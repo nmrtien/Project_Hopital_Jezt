@@ -220,3 +220,29 @@ BEGIN
 END
 GO
 EXEC checkDirector @diAcc = "jezt" , @diPass = "1";
+GO
+CREATE PROC getDirector
+AS
+BEGIN
+	SELECT * FROM Director;
+END
+GO
+CREATE PROC updateDirector
+	@diId int,
+	@diAcc varchar(100),
+	@diPass varchar(100),
+	@diFullName nvarchar(100),
+	@diPhone nvarchar(100),
+	@diContent ntext,
+	@diStatus bit
+AS
+BEGIN
+	UPDATE Director SET
+	DiAcc = @diAcc,
+	DiPass = @diPass,
+	DiFullName = @diFullName,
+	DiPhone = @diPhone,
+	DiContent = @diContent,
+	DiStatus = @diStatus
+	WHERE DiId = @diId;
+END
