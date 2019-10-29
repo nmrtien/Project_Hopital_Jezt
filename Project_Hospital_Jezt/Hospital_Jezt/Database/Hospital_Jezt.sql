@@ -165,24 +165,7 @@ END
 GO
 EXEC checkDoctor @doAcc = "tien01" , @doPass = "1";
 GO
-CREATE PROC getAllDoctorCaId
-	@doId int,
-	@doAcc varchar(100),
-	@doPass varchar(100),
-	@doFullName nvarchar(100) ,
-	@doPhone nvarchar(100) ,
-	@doAge int,
-	@doEmail nvarchar(100),
-	@doAvatar ntext,
-	@doAdress ntext,
-	@doContent ntext,
-	@doStatus bit,
-	@caId int
-AS
-BEGIN
-	SELECT * FROM Doctor WHERE CaId = @caId;
-END
-EXEC @getAllDoctorCaId @caId = 1;
+
 GO
 CREATE PROC getAllDoctor
 	@doId int,
@@ -246,3 +229,55 @@ BEGIN
 	DiStatus = @diStatus
 	WHERE DiId = @diId;
 END
+GO
+GO
+GO
+CREATE PROC getAllCategory
+AS
+BEGIN
+	SELECT * FROM Category;
+END
+GO
+CREATE PROC updateCategory
+	@caId int,
+	@caName nvarchar(100),
+	@caContent ntext,
+	@caStatus bit
+AS
+BEGIN
+	UPDATE Category SET CaName = @caName,
+						CaContent = @caContent,
+						@caStatus = @caStatus
+	WHERE CaId = @caId;
+END
+GO
+CREATE PROC insertCategory
+	@caName nvarchar(100),
+	@caContent ntext,
+	@caStatus bit
+AS
+BEGIN
+	INSERT Category VALUES (@caName,@caContent,@caStatus);
+END
+GO
+CREATE PROC getCategoryById
+	@caId int
+AS
+BEGIN
+	SELECT * FROM Category WHERE CaId = @caId;
+END
+GO
+CREATE PROC deleteCategory
+	@caId int
+AS
+BEGIN
+	DELETE FROM Category WHERE CaId = @caId;
+END
+GO
+CREATE PROC getDoctorWithCaId
+	@caId int
+AS
+BEGIN
+	SELECT Doctor.DoId , Doctor.DoAcc , Doctor.DoPass , Doctor.DoFullName , Doctor.DoPhone , Doctor.DoAge , Doctor.DoEmail, Doctor.DoAvatar, Doctor.DoAdress, Doctor.DoContent FROM Category INNER JOIN Doctor ON Category.CaId = Doctor.CaId WHERE Doctor.CaId = @caId;
+END
+EXEC getDoctorWithCaId @caId = 1;
