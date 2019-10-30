@@ -11,8 +11,10 @@
 	<div align="center">
 	<h2>List Department !</h2>
 	</br>
-	<h4><a href="CategoryController?action=createNew">Create New</a></h4>
+	<h4><a href="CreateCategory.jsp">Create New</a></h4>
 	</br>
+	<h4>${deleteFail}</h4>
+	<h4>${editFail}</h4>
 		<table border="1">
 			<thead>
 				<th>ID</th>
@@ -29,9 +31,9 @@
 						<td>${cat.caContent}</td>
 						<td>${cat.caStatus}</td>
 						<td>
-							<a href="#">EDIT</a>
+							<a href="CategoryController?action=initEdit&caId=${cat.caId}">EDIT</a>
 							<a href="CategoryController?action=getDoctorWithCaId&caId=${cat.caId}">DETAILS</a>
-							<a href="#">DELETE</a>
+							<a href="CategoryController?action=delete&caId=${cat.caId}">DELETE</a>
 						</td>
 					</tr>
 				</c:forEach>

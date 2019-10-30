@@ -257,7 +257,7 @@ CREATE PROC insertCategory
 	@caStatus bit
 AS
 BEGIN
-	INSERT Category VALUES (@caName,@caContent,@caStatus);
+	INSERT INTO Category VALUES (@caName,@caContent,@caStatus);
 END
 GO
 CREATE PROC getCategoryById
@@ -281,3 +281,4 @@ BEGIN
 	SELECT Doctor.DoId , Doctor.DoAcc , Doctor.DoPass , Doctor.DoFullName , Doctor.DoPhone , Doctor.DoAge , Doctor.DoEmail, Doctor.DoAvatar, Doctor.DoAdress, Doctor.DoContent FROM Category INNER JOIN Doctor ON Category.CaId = Doctor.CaId WHERE Doctor.CaId = @caId;
 END
 EXEC getDoctorWithCaId @caId = 1;
+GO

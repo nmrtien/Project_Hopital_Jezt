@@ -71,7 +71,8 @@ public class LoginController extends HttpServlet {
 				request.setAttribute("paPass", paPass);
 				request.getRequestDispatcher("Patient.jsp").forward(request, response);
 			}else {
-				request.getRequestDispatcher("Erorr.jsp").forward(request, response);
+				request.setAttribute("message", "Login fail !");
+				request.getRequestDispatcher("PatientLogin.jsp").forward(request, response);
 			}
 			
 		} else if(action.equals("doctor")) {
@@ -81,7 +82,8 @@ public class LoginController extends HttpServlet {
 				request.setAttribute("doPass", doPass);
 				request.getRequestDispatcher("Doctor.jsp").forward(request, response);
 			}else {
-				request.getRequestDispatcher("Erorr.jsp").forward(request, response);
+				request.setAttribute("message", "Login fail !");
+				request.getRequestDispatcher("DoctorLogin.jsp").forward(request, response);
 			}
 		} else if(action.equals("director")) {
 			dir = dirDAO.checkDirector(diAcc, diPass);
@@ -90,7 +92,8 @@ public class LoginController extends HttpServlet {
 				request.setAttribute("diPass", diPass);
 				request.getRequestDispatcher("Director.jsp").forward(request, response);
 			}else {
-				request.getRequestDispatcher("Erorr.jsp").forward(request, response);
+				request.setAttribute("message", "Login fail !");
+				request.getRequestDispatcher("DirectorLogin.jsp").forward(request, response);
 			}
 		}
 	}

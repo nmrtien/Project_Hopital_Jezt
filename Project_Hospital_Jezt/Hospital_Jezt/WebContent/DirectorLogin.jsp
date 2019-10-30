@@ -8,7 +8,9 @@
 </head>
 <body>
 	<div align="center">
-		<h1>Please enterning your account !</h1>
+		<h1>Please enterning your account DIRECTOR !</h1>
+		</br>
+		<h3>${message}</h3>
 		</br>
 		<form method="post" action="LoginController?action=director">
 			<table>
