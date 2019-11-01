@@ -89,7 +89,15 @@ public class CategoryController extends HttpServlet {
 			} else {
 				request.setAttribute("editFail", "Edit fail !");
 				GetAllCategory(caDAO, request, response);
-			}
+			}		
+		}
+		
+		else if(action.equals("initCreateDoctor")) {
+			
+			List<Category> listCat = new ArrayList<>();
+			listCat = caDAO.getAllCategory();
+			request.setAttribute("listCat", listCat);
+			request.getRequestDispatcher("CreateDoctor.jsp").forward(request, response);
 			
 		}
 		
@@ -107,6 +115,7 @@ public class CategoryController extends HttpServlet {
 		listCat = caDAO.getAllCategory();
 		request.setAttribute("listCat", listCat);
 		request.getRequestDispatcher("Department.jsp").forward(request, response);
+		
 		}
 
 }

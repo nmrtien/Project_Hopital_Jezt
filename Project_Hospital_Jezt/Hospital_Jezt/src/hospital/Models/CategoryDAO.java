@@ -121,6 +121,7 @@ public class CategoryDAO implements ICategory{
 				doc.setDoPhone(rs.getString("DoPhone"));
 				doc.setDoAge(rs.getInt("DoAge"));
 				doc.setDoEmail(rs.getString("DoEmail"));
+				doc.setDoAvatar(rs.getString("DoAvatar"));
 				doc.setDoAdress(rs.getString("DoAdress"));
 				doc.setDoContent(rs.getString("DoContent"));
 				listDoc.add(doc);

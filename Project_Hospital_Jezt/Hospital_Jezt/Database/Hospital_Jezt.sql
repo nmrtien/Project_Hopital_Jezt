@@ -1,7 +1,11 @@
 CREATE DATABASE Hospital_Jezt
+
 GO
+
 USE Hospital_Jezt
+
 GO
+
 CREATE TABLE Category
 (
 	CaId int primary key identity(1,1),
@@ -9,7 +13,9 @@ CREATE TABLE Category
 	CaContent ntext,
 	CaStatus bit	
 )
+
 GO
+
 CREATE TABLE Medicine
 (
 	MeId int primary key identity(1,1),
@@ -24,7 +30,9 @@ CREATE TABLE Medicine
 	MeStatus bit,
 	CaId int foreign key references Category(CaId),
 )
+
 GO
+
 CREATE TABLE Oder
 (
 	OdId int primary key identity(1,1),
@@ -35,7 +43,9 @@ CREATE TABLE Oder
 	OdStatus bit,
 	PaId int foreign key references Patient(PaId)
 )
+
 GO
+
 CREATE TABLE OderDetail
 (
 	OddId int primary key identity(1,1),
@@ -46,7 +56,9 @@ CREATE TABLE OderDetail
 	OdId int foreign key references Oder(OdId),
 	MeId int foreign key references Medicine(MeId)
 )
+
 GO
+
 CREATE TABLE Patient
 (
 	PaId int primary key identity(1,1),
@@ -62,7 +74,9 @@ CREATE TABLE Patient
 	PaStatus bit,
 	DoId int foreign key references Doctor(DoId)
 )
+
 GO
+
 CREATE TABLE Doctor
 (
 	DoId int primary key identity(1,1),
@@ -78,7 +92,9 @@ CREATE TABLE Doctor
 	DoStatus bit,
 	CaId int foreign key references Category(CaId)
 )
+
 GO
+
 CREATE TABLE Director
 (
 	DiId int primary key identity(1,1),
@@ -89,6 +105,7 @@ CREATE TABLE Director
 	DiContent ntext,
 	DiStatus bit
 )
+
 GO
 
 CREATE PROC checkPatient
@@ -98,16 +115,22 @@ AS
 BEGIN
 	SELECT PaAcc,PaPass FROM Patient WHERE PaAcc = @paAcc and PaPass = @paPass;
 END
+
 GO
+
 CREATE PROC getPatientById
 	@paId int
 AS
 BEGIN
 	SELECT * FROM Patient WHERE PaId = @paId;
 END
+
 GO
+
 EXEC checkPatient @paAcc = "luong" , @paPass = "1";
+
 GO
+
 CREATE PROC getAllPatientDoId
 	@paId int,
 	@paAcc varchar(100),
@@ -125,9 +148,12 @@ AS
 BEGIN
 	SELECT * FROM Patient WHERE DoId = @doId;
 END
+
 GO
+
 EXEC @getAllPatient @doId = 1;
 GO
+
 CREATE PROC getAllPatient
 	@paId int,
 	@paAcc varchar(100),
@@ -145,9 +171,11 @@ AS
 BEGIN
 	SELECT * FROM Patient;
 END
+
 GO
 GO
 GO
+
 CREATE PROC checkDoctor
 	@doAcc varchar(100),
 	@doPass varchar(100)
@@ -155,24 +183,23 @@ AS
 BEGIN
 	SELECT DoAcc,DoPass FROM Doctor WHERE DoAcc = @doAcc and DoPass = @doPass;
 END
+
 GO
+
 CREATE PROC getDoctorById
 	@doId int
 AS
 BEGIN
 	SELECT * FROM Doctor WHERE DoId = @doId;
 END
-GO
-EXEC checkDoctor @doAcc = "tien01" , @doPass = "1";
-GO
 
 GO
-CREATE PROC getAllDoctor
-	@doId int,
+
+CREATE PROC insertDoctor
 	@doAcc varchar(100),
 	@doPass varchar(100),
-	@doFullName nvarchar(100) ,
-	@doPhone nvarchar(100) ,
+	@doFullName nvarchar(100),
+	@doPhone nvarchar(100),
 	@doAge int,
 	@doEmail nvarchar(100),
 	@doAvatar ntext,
@@ -182,11 +209,68 @@ CREATE PROC getAllDoctor
 	@caId int
 AS
 BEGIN
+	INSERT INTO Doctor VALUES (@doAcc,@doPass,@doFullName,@doPhone,@doAge,@doEmail,@doAvatar,@doAdress,@doContent,@doStatus,@caId);
+END
+
+GO
+
+CREATE PROC updateDoctor
+	@doId int,
+	@doAcc varchar(100),
+	@doPass varchar(100),
+	@doFullName nvarchar(100),
+	@doPhone nvarchar(100),
+	@doAge int,
+	@doEmail nvarchar(100),
+	@doAvatar ntext,
+	@doAdress ntext,
+	@doContent ntext,
+	@doStatus bit,
+	@caId int
+AS
+BEGIN
+	UPDATE Doctor SET DoAcc = @doAcc,
+					  DoPass = @doPass,
+					  DoFullName = @doFullName,
+					  DoPhone = @doPhone,
+					  DoAge = @doAge,
+					  DoEmail = @doEmail,
+					  DoAvatar = @doAvatar,
+					  DoAdress = @doAdress,
+					  DoContent = @doContent,
+					  DoStatus = @doStatus,
+					  CaId = @caId
+	WHERE DoId = @doId;
+END
+
+GO
+
+EXEC checkDoctor @doAcc = "tien01" , @doPass = "1";
+
+GO
+
+GO
+
+CREATE PROC getAllDoctor
+AS
+BEGIN
 	SELECT * FROM Doctor;
 END
+EXEC getAllDoctor;
+
+GO
+
+CREATE PROC deleteDoctor
+	@doId int
+AS
+BEGIN
+	DELETE FROM Doctor WHERE DoId = @doId;
+END
+
 GO
 GO
 GO
+
 CREATE PROC checkDirector
 	@diAcc varchar(100),
 	@diPass varchar(100)
@@ -194,22 +278,30 @@ AS
 BEGIN
 	SELECT DiAcc,DiPass FROM Director WHERE DiAcc = @diAcc and DiPass = @diPass;
 END
+
 GO
+
 CREATE PROC getDirectorById
 	@diId int
 AS
 BEGIN
 	SELECT * FROM Director WHERE DiId = @diId;
 END
+
 GO
+
 EXEC checkDirector @diAcc = "jezt" , @diPass = "1";
+
 GO
+
 CREATE PROC getDirector
 AS
 BEGIN
 	SELECT * FROM Director;
 END
+
 GO
+
 CREATE PROC updateDirector
 	@diId int,
 	@diAcc varchar(100),
@@ -229,15 +321,19 @@ BEGIN
 	DiStatus = @diStatus
 	WHERE DiId = @diId;
 END
+
 GO
 GO
 GO
+
 CREATE PROC getAllCategory
 AS
 BEGIN
 	SELECT * FROM Category;
 END
+
 GO
+
 CREATE PROC updateCategory
 	@caId int,
 	@caName nvarchar(100),
@@ -250,7 +346,9 @@ BEGIN
 						@caStatus = @caStatus
 	WHERE CaId = @caId;
 END
+
 GO
+
 CREATE PROC insertCategory
 	@caName nvarchar(100),
 	@caContent ntext,
@@ -259,21 +357,27 @@ AS
 BEGIN
 	INSERT INTO Category VALUES (@caName,@caContent,@caStatus);
 END
+
 GO
+
 CREATE PROC getCategoryById
 	@caId int
 AS
 BEGIN
 	SELECT * FROM Category WHERE CaId = @caId;
 END
+
 GO
+
 CREATE PROC deleteCategory
 	@caId int
 AS
 BEGIN
 	DELETE FROM Category WHERE CaId = @caId;
 END
+
 GO
+
 CREATE PROC getDoctorWithCaId
 	@caId int
 AS
@@ -281,4 +385,5 @@ BEGIN
 	SELECT Doctor.DoId , Doctor.DoAcc , Doctor.DoPass , Doctor.DoFullName , Doctor.DoPhone , Doctor.DoAge , Doctor.DoEmail, Doctor.DoAvatar, Doctor.DoAdress, Doctor.DoContent FROM Category INNER JOIN Doctor ON Category.CaId = Doctor.CaId WHERE Doctor.CaId = @caId;
 END
 EXEC getDoctorWithCaId @caId = 1;
+
 GO

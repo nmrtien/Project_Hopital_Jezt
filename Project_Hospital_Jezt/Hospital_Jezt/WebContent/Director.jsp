@@ -11,8 +11,9 @@
 		<h2>HELLO Director <span>${diAcc}</span> !</h2>
 		</br>
 		<ul>
-			<li><h3><a href="CategoryController?action=getAllCategory">Department</a></h3></li>
 			<li><h3><a href="DirectorController?action=getDirector">Director Information</a></h3></li>
+			<li><h3><a href="CategoryController?action=getAllCategory">Department Management</a></h3></li>
+			<li><h3><a href="DoctorController?action=getAll">Doctor Management</a></h3></li>
 			<li><h3><a href="#">New</a></h3></li>
 			<li><h3><a href="#">Home</a></h3></li>
 			<li><h3><a href="#">About US</a></h3></li>

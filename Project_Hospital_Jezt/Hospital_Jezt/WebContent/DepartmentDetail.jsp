@@ -20,6 +20,7 @@
 				<th>PHONE</th>
 				<th>AGE</th>
 				<th>EMAIL</th>
+				<th>AVATAR</th>
 				<th>ADDRESS</th>
 				<th>CONTENT</th>
 				
@@ -34,6 +35,7 @@
 						<td>${doc.doPhone}</td>
 						<td>${doc.doAge}</td>
 						<td>${doc.doEmail}</td>
+						<td><img src="${doc.doAvatar}" alt="Doctor face" height="100" width="100"></td>
 						<td>${doc.doAdress}</td>
 						<td>${doc.doContent}</td>
 						
