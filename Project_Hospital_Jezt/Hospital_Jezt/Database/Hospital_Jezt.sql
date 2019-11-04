@@ -28,7 +28,7 @@ CREATE TABLE Medicine
 	MeExpirationDate datetime not null,
 	MeImage ntext,
 	MeStatus bit,
-	CaId int foreign key references Category(CaId),
+	CaId int foreign key references Category(CaId)
 )
 
 GO
@@ -41,7 +41,7 @@ CREATE TABLE Oder
 	OdTotalPrice float,
 	OdQuantity int,
 	OdStatus bit,
-	PaId int foreign key references Patient(PaId)
+	PaId int foreign key references Patients(PaId)
 )
 
 GO
@@ -59,7 +59,7 @@ CREATE TABLE OderDetail
 
 GO
 
-CREATE TABLE Patient
+CREATE TABLE Patients
 (
 	PaId int primary key identity(1,1),
 	PaAcc varchar(100) not null,
@@ -69,7 +69,7 @@ CREATE TABLE Patient
 	PaAge int,
 	PaEmail nvarchar(100),
 	PaAvatar ntext,
-	PaAdress ntext,
+	PaAddress ntext,
 	PaContent ntext,
 	PaStatus bit,
 	DoId int foreign key references Doctor(DoId)
@@ -87,7 +87,7 @@ CREATE TABLE Doctor
 	DoAge int,
 	DoEmail nvarchar(100),
 	DoAvatar ntext,
-	DoAdress ntext,
+	DoAddress ntext,
 	DoContent ntext,
 	DoStatus bit,
 	CaId int foreign key references Category(CaId)
@@ -106,32 +106,32 @@ CREATE TABLE Director
 	DiStatus bit
 )
 
-GO
+GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO
 
-CREATE PROC checkPatient
+CREATE PROC checkLoginPatients
 	@paAcc varchar(100),
 	@paPass varchar(100)
 AS
 BEGIN
-	SELECT PaAcc,PaPass FROM Patient WHERE PaAcc = @paAcc and PaPass = @paPass;
+	SELECT PaAcc,PaPass FROM Patients WHERE PaAcc = @paAcc and PaPass = @paPass;
 END
 
 GO
 
-CREATE PROC getPatientById
+CREATE PROC getPatientsById
 	@paId int
 AS
 BEGIN
-	SELECT * FROM Patient WHERE PaId = @paId;
+	SELECT * FROM Patients WHERE PaId = @paId;
 END
 
 GO
 
-EXEC checkPatient @paAcc = "luong" , @paPass = "1";
+EXEC checkPatients @paAcc = "luong" , @paPass = "1";
 
 GO
 
-CREATE PROC getAllPatientDoId
+CREATE PROC getAllPatientsDoId
 	@paId int,
 	@paAcc varchar(100),
 	@paPass varchar(100),
@@ -140,21 +140,21 @@ CREATE PROC getAllPatientDoId
 	@paAge int,
 	@paEmail nvarchar(100),
 	@paAvatar ntext,
-	@paAdress ntext,
+	@paAddress ntext,
 	@paContent ntext,
 	@paStatus bit,
 	@doId int
 AS
 BEGIN
-	SELECT * FROM Patient WHERE DoId = @doId;
+	SELECT * FROM Patients WHERE DoId = @doId;
 END
 
 GO
 
-EXEC @getAllPatient @doId = 1;
+EXEC @getAllPatients @doId = 1;
 GO
 
-CREATE PROC getAllPatient
+CREATE PROC getAllPatients
 	@paId int,
 	@paAcc varchar(100),
 	@paPass varchar(100),
@@ -163,20 +163,28 @@ CREATE PROC getAllPatient
 	@paAge int,
 	@paEmail nvarchar(100),
 	@paAvatar ntext,
-	@paAdress ntext,
+	@paAddress ntext,
 	@paContent ntext,
 	@paStatus bit,
 	@doId int
 AS
 BEGIN
-	SELECT * FROM Patient;
+	SELECT * FROM Patients;
 END
 
 GO
-GO
+
+CREATE PROC searchPatientsByName
+	@paFullName nvarchar(100)
+AS 
+BEGIN
+	SELECT * FROM Patients WHERE PaFullName = @paFullName;	
+END
+
+GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO
 GO
 
-CREATE PROC checkDoctor
+CREATE PROC checkLoginDoctor
 	@doAcc varchar(100),
 	@doPass varchar(100)
 AS
@@ -203,13 +211,13 @@ CREATE PROC insertDoctor
 	@doAge int,
 	@doEmail nvarchar(100),
 	@doAvatar ntext,
-	@doAdress ntext,
+	@doAddress ntext,
 	@doContent ntext,
 	@doStatus bit,
 	@caId int
 AS
 BEGIN
-	INSERT INTO Doctor VALUES (@doAcc,@doPass,@doFullName,@doPhone,@doAge,@doEmail,@doAvatar,@doAdress,@doContent,@doStatus,@caId);
+	INSERT INTO Doctor VALUES (@doAcc,@doPass,@doFullName,@doPhone,@doAge,@doEmail,@doAvatar,@doAddress,@doContent,@doStatus,@caId);
 END
 
 GO
@@ -223,7 +231,7 @@ CREATE PROC updateDoctor
 	@doAge int,
 	@doEmail nvarchar(100),
 	@doAvatar ntext,
-	@doAdress ntext,
+	@doAddress ntext,
 	@doContent ntext,
 	@doStatus bit,
 	@caId int
@@ -236,7 +244,7 @@ BEGIN
 					  DoAge = @doAge,
 					  DoEmail = @doEmail,
 					  DoAvatar = @doAvatar,
-					  DoAdress = @doAdress,
+					  DoAddress = @doAddress,
 					  DoContent = @doContent,
 					  DoStatus = @doStatus,
 					  CaId = @caId
@@ -268,10 +276,20 @@ BEGIN
 END
 
 GO
+
+CREATE PROC searchDoctorByName
+	@doFullName nvarchar(100)
+AS 
+BEGIN
+	SELECT * FROM Doctor WHERE DoFullName = @doFullName;	
+END
+
+GO
+GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO
 GO
 GO
 
-CREATE PROC checkDirector
+CREATE PROC checkLoginDirector
 	@diAcc varchar(100),
 	@diPass varchar(100)
 AS
@@ -323,7 +341,7 @@ BEGIN
 END
 
 GO
-GO
+GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO
 GO
 
 CREATE PROC getAllCategory
@@ -382,8 +400,90 @@ CREATE PROC getDoctorWithCaId
 	@caId int
 AS
 BEGIN
-	SELECT Doctor.DoId , Doctor.DoAcc , Doctor.DoPass , Doctor.DoFullName , Doctor.DoPhone , Doctor.DoAge , Doctor.DoEmail, Doctor.DoAvatar, Doctor.DoAdress, Doctor.DoContent FROM Category INNER JOIN Doctor ON Category.CaId = Doctor.CaId WHERE Doctor.CaId = @caId;
+	SELECT Doctor.DoId , Doctor.DoAcc , Doctor.DoPass , Doctor.DoFullName , Doctor.DoPhone , Doctor.DoAge , Doctor.DoEmail, Doctor.DoAvatar, Doctor.DoAddress, Doctor.DoContent FROM Category INNER JOIN Doctor ON Category.CaId = Doctor.CaId WHERE Doctor.CaId = @caId;
 END
-EXEC getDoctorWithCaId @caId = 1;
 
 GO
+EXEC getDoctorWithCaId @caId = 1;
+GO
+GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO
+
+CREATE PROC getAllMedicine
+AS
+BEGIN
+	SELECT * FROM Medicine;
+END
+
+GO
+
+CREATE PROC insertMedicine
+	@meName nvarchar(100),
+	@mePrice float,
+	@meProducer nvarchar(100),
+	@meTitle nvarchar(50),
+	@meContent ntext,
+	@meDateOfManufacture datetime,
+	@meExpirationDate datetime ,
+	@meImage ntext,
+	@meStatus bit,
+	@caId int
+AS
+BEGIN
+	INSERT INTO Medicine VALUES (@meName,@mePrice,@meProducer,@meTitle,@meContent,@meDateOfManufacture,@meExpirationDate,@meImage,@meStatus,@caId);
+END
+
+GO
+
+CREATE PROC updateMedicine
+	@meId int,
+	@meName nvarchar(100),
+	@mePrice float,
+	@meProducer nvarchar(100),
+	@meTitle nvarchar(50),
+	@meContent ntext,
+	@meDateOfManufacture datetime,
+	@meExpirationDate datetime ,
+	@meImage ntext,
+	@meStatus bit,
+	@caId int
+AS
+BEGIN
+	UPDATE Medicine SET MeName = @meName,
+						MePrice = @mePrice,
+						MeProducer = @meProducer,
+						MeTitle = @meTitle,
+						MeContent = @meContent,
+						MeDateOfManufacture = @meDateOfManufacture,
+						MeExpirationDate = @meExpirationDate,
+						MeImage = @meImage,
+						MeStatus = @meStatus,
+						CaId = @caId
+	WHERE MeId = @meId;
+END
+
+GO
+
+CREATE PROC deleteMedicine
+	@meId int
+AS
+BEGIN
+	DELETE FROM Medicine WHERE MeId = @meId;
+END
+
+GO
+
+CREATE PROC getMedicineById
+	@meId int
+AS
+BEGIN
+	SELECT * FROM Medicine WHERE MeId = @meId;
+END
+
+GO
+
+CREATE PROC searchMedicineByName
+	@meName nvarchar(100)
+AS
+BEGIN
+	SELECT * FROM Medicine WHERE MeName = @meName;
+END

@@ -11,13 +11,13 @@ import hospital.Interfaces.IDirector;
 public class DirectorDAO implements IDirector{
 
 	@Override
-	public Director checkDirector(String diAcc, String diPass) {
+	public Director checkLoginDirector(String diAcc, String diPass) {
 		Connection conn = null;
 		CallableStatement callst = null;
 		Director dir = null;
 		try {
 			conn = ConnectionDB.openConection();
-			callst = conn.prepareCall("{call checkDirector(?,?)}");
+			callst = conn.prepareCall("{call checkLoginDirector(?,?)}");
 			callst.setString(1, diAcc);
 			callst.setString(2, diPass);
 			ResultSet rs = callst.executeQuery();

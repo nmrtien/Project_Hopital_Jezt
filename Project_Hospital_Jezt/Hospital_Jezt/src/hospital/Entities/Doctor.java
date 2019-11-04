@@ -10,7 +10,7 @@ public class Doctor {
 	private int doAge;
 	private String doEmail;
 	private String doAvatar;
-	private String doAdress;
+	private String doAddress;
 	private String doContent;
 	private boolean doStatus;
 	private int caId;
@@ -20,7 +20,7 @@ public class Doctor {
 	}
 
 	public Doctor(int doId, String doAcc, String doPass, String doFullName, String doPhone, int doAge, String doEmail,
-			String doAvatar, String doAdress, String doContent, boolean doStatus, int caId) {
+			String doAvatar, String doAddress, String doContent, boolean doStatus, int caId) {
 		
 		this.doId = doId;
 		this.doAcc = doAcc;
@@ -30,7 +30,7 @@ public class Doctor {
 		this.doAge = doAge;
 		this.doEmail = doEmail;
 		this.doAvatar = doAvatar;
-		this.doAdress = doAdress;
+		this.doAddress = doAddress;
 		this.doContent = doContent;
 		this.doStatus = doStatus;
 		this.caId = caId;
@@ -100,12 +100,12 @@ public class Doctor {
 		this.doAvatar = doAvatar;
 	}
 
-	public String getDoAdress() {
-		return doAdress;
+	public String getDoAddress() {
+		return doAddress;
 	}
 
-	public void setDoAdress(String doAdress) {
-		this.doAdress = doAdress;
+	public void setDoAddress(String doAddress) {
+		this.doAddress = doAddress;
 	}
 
 	public String getDoContent() {

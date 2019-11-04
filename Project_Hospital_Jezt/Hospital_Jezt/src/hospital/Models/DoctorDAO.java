@@ -13,13 +13,13 @@ import hospital.Interfaces.IDoctor;
 public class DoctorDAO implements IDoctor{
 
 	@Override
-	public Doctor checkDoctor(String doAcc, String doPass) {
+	public Doctor checkLoginDoctor(String doAcc, String doPass) {
 		Connection conn = null;
 		CallableStatement callst = null;
 		Doctor doc = null;
 		try {
 			conn = ConnectionDB.openConection();
-			callst = conn.prepareCall("{call checkDoctor(?,?)}");
+			callst = conn.prepareCall("{call checkLoginDoctor(?,?)}");
 			callst.setString(1, doAcc);
 			callst.setString(2, doPass);
 			ResultSet rs = callst.executeQuery();
@@ -54,7 +54,7 @@ public class DoctorDAO implements IDoctor{
 				doc.setDoAge(rs.getInt("DoAge"));
 				doc.setDoEmail(rs.getString("DoEmail"));
 				doc.setDoAvatar(rs.getString("DoAvatar"));
-				doc.setDoAdress(rs.getString("DoAdress"));
+				doc.setDoAddress(rs.getString("DoAddress"));
 				doc.setDoContent(rs.getString("DoContent"));
 				doc.setDoStatus(rs.getBoolean("DoStatus"));
 				doc.setCaId(rs.getInt("CaId"));
@@ -87,7 +87,7 @@ public class DoctorDAO implements IDoctor{
 				doc.setDoAge(rs.getInt("DoAge"));
 				doc.setDoEmail(rs.getString("DoEmail"));
 				doc.setDoAvatar(rs.getString("DoAvatar"));
-				doc.setDoAdress(rs.getString("DoAdress"));
+				doc.setDoAddress(rs.getString("DoAddress"));
 				doc.setDoContent(rs.getString("DoContent"));
 				doc.setDoStatus(rs.getBoolean("DoStatus"));
 				doc.setCaId(rs.getInt("CaId"));
@@ -113,7 +113,7 @@ public class DoctorDAO implements IDoctor{
 			callst.setInt(5, doc.getDoAge());
 			callst.setString(6, doc.getDoEmail());
 			callst.setString(7, doc.getDoAvatar());
-			callst.setString(8, doc.getDoAdress());
+			callst.setString(8, doc.getDoAddress());
 			callst.setString(9, doc.getDoContent());
 			callst.setBoolean(10, doc.isDoStatus());
 			callst.setInt(11, doc.getCaId());
@@ -141,7 +141,7 @@ public class DoctorDAO implements IDoctor{
 			callst.setInt(6, doc.getDoAge());
 			callst.setString(7, doc.getDoEmail());
 			callst.setString(8, doc.getDoAvatar());
-			callst.setString(9, doc.getDoAdress());
+			callst.setString(9, doc.getDoAddress());
 			callst.setString(10, doc.getDoContent());
 			callst.setBoolean(11, doc.isDoStatus());
 			callst.setInt(12, doc.getCaId());
@@ -168,6 +168,39 @@ public class DoctorDAO implements IDoctor{
 			check = false;
 		}
 		return check;
+	}
+
+	@Override
+	public List<Doctor> searchDoctorByName(String doFullName) {
+		Connection conn = null;
+		CallableStatement callst = null;
+		List<Doctor> listDoc = null;
+		try {
+			conn = ConnectionDB.openConection();
+			callst = conn.prepareCall("{call searchDoctorByName(?)}");
+			callst.setString(1, doFullName);
+			ResultSet rs = callst.executeQuery();
+			listDoc = new ArrayList<>();
+			while(rs.next()) {
+				Doctor doc = new Doctor();
+				doc.setDoId(rs.getInt("DoId"));
+				doc.setDoAcc(rs.getString("DoAcc"));
+				doc.setDoPass(rs.getString("DoPass"));
+				doc.setDoFullName(rs.getString("DoFullName"));
+				doc.setDoPhone(rs.getString("DoPhone"));
+				doc.setDoAge(rs.getInt("DoAge"));
+				doc.setDoEmail(rs.getString("DoEmail"));
+				doc.setDoAvatar(rs.getString("DoAvatar"));
+				doc.setDoAddress(rs.getString("DoAddress"));
+				doc.setDoContent(rs.getString("DoContent"));
+				doc.setDoStatus(rs.getBoolean("DoStatus"));
+				doc.setCaId(rs.getInt("CaId"));
+				listDoc.add(doc);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return listDoc;
 	}
 
 }

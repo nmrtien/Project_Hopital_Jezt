@@ -6,7 +6,7 @@ import hospital.Entities.Doctor;
 
 public interface IDoctor {
 	
-	public Doctor checkDoctor(String doAcc, String doPass);
+	public Doctor checkLoginDoctor(String doAcc, String doPass);
 	
 	public List<Doctor> getAllDoctor();
 	
@@ -17,5 +17,7 @@ public interface IDoctor {
 	public boolean updateDoctor(Doctor doc);
 	
 	public boolean deleteDoctor(int doId);
+	
+	public List<Doctor> searchDoctorByName(String doFullName);
 	
 }

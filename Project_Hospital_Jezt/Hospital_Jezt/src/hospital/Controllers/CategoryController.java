@@ -11,8 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import hospital.Entities.Category;
+import hospital.Entities.Director;
 import hospital.Entities.Doctor;
+import hospital.Entities.Medicine;
 import hospital.Models.CategoryDAO;
+import hospital.Models.DirectorDAO;
 
 /**
  * Servlet implementation class CategoryController
@@ -24,6 +27,12 @@ public class CategoryController extends HttpServlet {
 		
 		Doctor doc = new Doctor();
 		
+		Medicine med = new Medicine();
+		
+		Director dir = new Director();
+		
+		DirectorDAO diDAO = new DirectorDAO();
+		
 		CategoryDAO caDAO = new CategoryDAO();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,7 +40,7 @@ public class CategoryController extends HttpServlet {
 		String action = request.getParameter("action");
 		
 		if(action.equals("getAllCategory")) {
-			GetAllCategory(caDAO, request, response);
+			getAllCategory(caDAO, diDAO, request, response);
 			
 		} 
 		
@@ -41,8 +50,10 @@ public class CategoryController extends HttpServlet {
 			List<Doctor> listDoc = new ArrayList<>();
 			//CALL MODELS
 			listDoc = caDAO.getDoctorWithCaId(caId);
+			dir = diDAO.getDirector();
+			request.setAttribute("dir", dir);
 			request.setAttribute("listDoc", listDoc);
-			request.getRequestDispatcher("DepartmentDetail.jsp").forward(request, response);
+			request.getRequestDispatcher("CategoryDetail.jsp").forward(request, response);
 		} 
 		
 		else if(action.equals("CREATE")) {
@@ -52,7 +63,7 @@ public class CategoryController extends HttpServlet {
 			cat.setCaStatus(Boolean.parseBoolean(request.getParameter("caStatus")));
 			boolean check = caDAO.insertCategory(cat);
 			if(check) {
-				GetAllCategory(caDAO, request, response);
+				getAllCategory(caDAO, diDAO, request, response);
 			} else {
 				request.setAttribute("createFail", "Create Category fail !");
 				request.getRequestDispatcher("CreateCategory.jsp").forward(request, response);
@@ -63,21 +74,23 @@ public class CategoryController extends HttpServlet {
 			int caId = Integer.parseInt(request.getParameter("caId"));
 			boolean check = caDAO.deleteCategory(caId);
 			if(check) {
-				GetAllCategory(caDAO, request, response);
+				getAllCategory(caDAO, diDAO, request, response);
 			} else {
 				request.setAttribute("deleteFail", "Delete fail !");
-				GetAllCategory(caDAO, request, response);
+				getAllCategory(caDAO, diDAO, request, response);
 			}
 		} 
 		
 		else if(action.equals("initEdit")) {
 			int caId = Integer.parseInt(request.getParameter("caId"));
 			cat = caDAO.getCategoryById(caId);
+			dir = diDAO.getDirector();
+			request.setAttribute("dir", dir);
 			request.setAttribute("cat", cat);
 			request.getRequestDispatcher("EditCategory.jsp").forward(request, response);
 		} 
 		
-		else if(action.equals("EDIT")) {
+		else if(action.equals("SAVE")) {
 			cat = new Category();
 			cat.setCaId(Integer.parseInt(request.getParameter("caId")));
 			cat.setCaName(request.getParameter("caName"));
@@ -85,20 +98,11 @@ public class CategoryController extends HttpServlet {
 			cat.setCaStatus(Boolean.parseBoolean(request.getParameter("caStatus")));
 			boolean check = caDAO.updateCategory(cat);
 			if(check) {
-				GetAllCategory(caDAO, request, response);
+				getAllCategory(caDAO, diDAO, request, response);
 			} else {
 				request.setAttribute("editFail", "Edit fail !");
-				GetAllCategory(caDAO, request, response);
+				getAllCategory(caDAO, diDAO, request, response);
 			}		
-		}
-		
-		else if(action.equals("initCreateDoctor")) {
-			
-			List<Category> listCat = new ArrayList<>();
-			listCat = caDAO.getAllCategory();
-			request.setAttribute("listCat", listCat);
-			request.getRequestDispatcher("CreateDoctor.jsp").forward(request, response);
-			
 		}
 		
 	}
@@ -109,12 +113,14 @@ public class CategoryController extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	public void GetAllCategory(CategoryDAO caDAO,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void getAllCategory(CategoryDAO caDAO, DirectorDAO diDAO,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		List<Category> listCat = new ArrayList<>();
 		listCat = caDAO.getAllCategory();
+		dir = diDAO.getDirector();
+		request.setAttribute("dir", dir);
 		request.setAttribute("listCat", listCat);
-		request.getRequestDispatcher("Department.jsp").forward(request, response);
+		request.getRequestDispatcher("Category.jsp").forward(request, response);
 		
 		}
 

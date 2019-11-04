@@ -38,7 +38,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 			dir = diDAO.getDirectorById(diId);
 			request.setAttribute("dir", dir);
 			request.getRequestDispatcher("EditDirector.jsp").forward(request, response);
-		} else if(action.equals("edit")) {
+		} else if(action.equals("SAVE")) {
 			dir = new Director();
 			dir.setDiId(Integer.parseInt(request.getParameter("diId")));
 			dir.setDiAcc(request.getParameter("diAcc"));

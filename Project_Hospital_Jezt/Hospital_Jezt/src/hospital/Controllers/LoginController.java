@@ -9,38 +9,23 @@ import javax.servlet.http.HttpServletResponse;
 
 import hospital.Entities.Director;
 import hospital.Entities.Doctor;
-import hospital.Entities.Patient;
+import hospital.Entities.Patients;
 import hospital.Models.DirectorDAO;
 import hospital.Models.DoctorDAO;
-import hospital.Models.PatientDAO;
+import hospital.Models.PatientsDAO;
 
 /**
  * Servlet implementation class LoginController
  */
 @WebServlet("/LoginController")
 public class LoginController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LoginController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
@@ -61,22 +46,22 @@ public class LoginController extends HttpServlet {
 		Doctor doc = new Doctor();
 		DoctorDAO docDAO = new DoctorDAO();
 		
-		Patient pat = new Patient();
-		PatientDAO patDAO = new PatientDAO();
+		Patients pat = new Patients();
+		PatientsDAO patDAO = new PatientsDAO();
 		
-		if(action.equals("patient")) {
-			pat = patDAO.checkPatient(paAcc, paPass);
+		if(action.equals("patients")) {
+			pat = patDAO.checkLoginPatients(paAcc, paPass);
 			if(pat!=null) {
 				request.setAttribute("paAcc", paAcc);
 				request.setAttribute("paPass", paPass);
-				request.getRequestDispatcher("Patient.jsp").forward(request, response);
+				request.getRequestDispatcher("Patients.jsp").forward(request, response);
 			}else {
 				request.setAttribute("message", "Login fail !");
-				request.getRequestDispatcher("PatientLogin.jsp").forward(request, response);
+				request.getRequestDispatcher("PatientsLogin.jsp").forward(request, response);
 			}
 			
 		} else if(action.equals("doctor")) {
-			doc = docDAO.checkDoctor(doAcc, doPass);
+			doc = docDAO.checkLoginDoctor(doAcc, doPass);
 			if(doc!=null) {
 				request.setAttribute("doAcc", doAcc);
 				request.setAttribute("doPass", doPass);
@@ -86,8 +71,10 @@ public class LoginController extends HttpServlet {
 				request.getRequestDispatcher("DoctorLogin.jsp").forward(request, response);
 			}
 		} else if(action.equals("director")) {
-			dir = dirDAO.checkDirector(diAcc, diPass);
+			dir = dirDAO.checkLoginDirector(diAcc, diPass);
+			Director di = dirDAO.getDirector();
 			if(dir!=null) {
+				request.setAttribute("di", di);
 				request.setAttribute("diAcc", diAcc);
 				request.setAttribute("diPass", diPass);
 				request.getRequestDispatcher("Director.jsp").forward(request, response);
