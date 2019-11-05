@@ -29,25 +29,25 @@ import hospital.Models.PatientsDAO;
 @WebServlet("/MedicineController")
 public class MedicineController extends HttpServlet {
 	
-	Director dir = new Director();
+		Director dir = new Director();
 	
-	Doctor doc = new Doctor();
+		Doctor doc = new Doctor();
 	
-	Patients pat = new Patients();
+		Patients pat = new Patients();
 	
-	Medicine med = new Medicine();
+		Medicine med = new Medicine();
 	
-	DoctorDAO doDAO = new DoctorDAO();
+		DoctorDAO doDAO = new DoctorDAO();
 	
-	PatientsDAO paDAO = new PatientsDAO();
+		PatientsDAO paDAO = new PatientsDAO();
 	
-	DirectorDAO diDAO = new DirectorDAO();
+		DirectorDAO diDAO = new DirectorDAO();
 	
-	MedicineDAO meDAO = new MedicineDAO();
+		MedicineDAO meDAO = new MedicineDAO();
 	
-	Category cat = new Category();
+		Category cat = new Category();
 	
-	CategoryDAO caDAO = new CategoryDAO();
+		CategoryDAO caDAO = new CategoryDAO();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -65,7 +65,16 @@ public class MedicineController extends HttpServlet {
 			dir = diDAO.getDirector();
 			request.setAttribute("med", med);
 			request.setAttribute("dir", dir);
-			request.getRequestDispatcher("MedicineDetail.jsp").forward(request, response);
+			request.getRequestDispatcher("MedicineDetailDirector.jsp").forward(request, response);
+		}
+		
+		else if(action.equals("detailDoctor")) {
+			int meId = Integer.parseInt(request.getParameter("meId"));
+			med = meDAO.getMedicineById(meId);
+			dir = diDAO.getDirector();
+			request.setAttribute("med", med);
+			request.setAttribute("dir", dir);
+			request.getRequestDispatcher("MedicineDetailDoctor.jsp").forward(request, response);
 		}
 		
 		else if(action.equals("initEdit")) {
@@ -162,11 +171,19 @@ public class MedicineController extends HttpServlet {
 			String meName = request.getParameter("meName");
 			List<Medicine> listMed = new ArrayList<>();
 			listMed = meDAO.searchMedicineByName(meName);
-			dir = diDAO.getDirector();
 			
-			request.setAttribute("dir", dir);
 			request.setAttribute("listMed", listMed);
-			request.getRequestDispatcher("ListMedicineDirector.jsp").forward(request, response);
+			request.getRequestDispatcher("ListMedicineDoctor.jsp").forward(request, response);
+		}
+		
+		else if(action.equals("getMedicineWithCaId")) {
+			int caId = Integer.parseInt(request.getParameter("caId"));
+			
+			List<Medicine> listMed = new ArrayList<>();
+			listMed = meDAO.getMedicineWithCaId(caId);
+			
+			request.setAttribute("listMed", listMed);
+			request.getRequestDispatcher("ListMedicineDoctor.jsp").forward(request, response);
 		}
 		
 	}

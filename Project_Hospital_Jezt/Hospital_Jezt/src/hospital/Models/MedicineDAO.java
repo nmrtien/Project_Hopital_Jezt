@@ -177,4 +177,36 @@ public class MedicineDAO implements IMedicine{
 		return listMed;
 	}
 
+	@Override
+	public List<Medicine> getMedicineWithCaId(int caId) {
+		Connection conn = null;
+		CallableStatement callst = null;
+		List<Medicine> listMed = null;
+		try {
+			conn = ConnectionDB.openConection();
+			callst = conn.prepareCall("{call getMedicineWithCaId(?)}");
+			callst.setInt(1, caId);
+			ResultSet rs = callst.executeQuery();
+			listMed = new ArrayList<>();
+			while(rs.next()) {
+				Medicine med = new Medicine();
+				med.setMeId(rs.getInt("MeId"));
+				med.setMeName(rs.getString("MeName"));
+				med.setMePrice(rs.getFloat("MePrice"));
+				med.setMeProducer(rs.getString("MeProducer"));
+				med.setMeTitle(rs.getString("MeTitle"));
+				med.setMeContent(rs.getString("MeContent"));
+				med.setMeDateOfManufacture(rs.getDate("MeDateOfManufacture"));
+				med.setMeExpirationDate(rs.getDate("MeExpirationDate"));
+				med.setMeImage(rs.getString("MeImage"));
+				med.setMeStatus(rs.getBoolean("MeStatus"));
+				med.setCaId(rs.getInt("CaId"));
+				listMed.add(med);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return listMed;
+	}
+
 }

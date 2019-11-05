@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import hospital.Entities.Director;
 import hospital.Entities.Doctor;
@@ -63,8 +64,9 @@ public class LoginController extends HttpServlet {
 		} else if(action.equals("doctor")) {
 			doc = docDAO.checkLoginDoctor(doAcc, doPass);
 			if(doc!=null) {
-				request.setAttribute("doAcc", doAcc);
-				request.setAttribute("doPass", doPass);
+				HttpSession session = request.getSession();
+				session.setAttribute("doc", doc);
+				
 				request.getRequestDispatcher("Doctor.jsp").forward(request, response);
 			}else {
 				request.setAttribute("message", "Login fail !");

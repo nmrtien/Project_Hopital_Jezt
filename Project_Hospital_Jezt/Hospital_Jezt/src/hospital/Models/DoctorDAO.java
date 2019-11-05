@@ -25,8 +25,18 @@ public class DoctorDAO implements IDoctor{
 			ResultSet rs = callst.executeQuery();
 			if(rs.next()) {
 				doc = new Doctor();
+				doc.setDoId(rs.getInt("DoId"));
 				doc.setDoAcc(rs.getString("DoAcc"));
 				doc.setDoPass(rs.getString("DoPass"));
+				doc.setDoFullName(rs.getString("DoFullName"));
+				doc.setDoPhone(rs.getString("DoPhone"));
+				doc.setDoAge(rs.getInt("DoAge"));
+				doc.setDoEmail(rs.getString("DoEmail"));
+				doc.setDoAvatar(rs.getString("DoAvatar"));
+				doc.setDoAddress(rs.getString("DoAddress"));
+				doc.setDoContent(rs.getString("DoContent"));
+				doc.setDoStatus(rs.getBoolean("DoStatus"));
+				doc.setCaId(rs.getInt("CaId"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

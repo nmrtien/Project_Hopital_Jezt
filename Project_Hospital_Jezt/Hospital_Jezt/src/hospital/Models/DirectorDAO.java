@@ -23,8 +23,13 @@ public class DirectorDAO implements IDirector{
 			ResultSet rs = callst.executeQuery();
 			if(rs.next()) {
 				dir = new Director();
+				dir.setDiId(rs.getInt("DiId"));
 				dir.setDiAcc(rs.getString("DiAcc"));
 				dir.setDiPass(rs.getString("DiPass"));
+				dir.setDiFullName(rs.getString("DiFullName"));
+				dir.setDiPhone(rs.getString("DiPhone"));
+				dir.setDiContent(rs.getString("DiContent"));
+				dir.setDiStatus(rs.getBoolean("DiStatus"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

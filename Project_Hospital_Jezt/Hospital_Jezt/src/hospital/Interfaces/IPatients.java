@@ -9,7 +9,9 @@ public interface IPatients {
 	
 	public Patients checkLoginPatients(String paAcc, String paPass);
 	
-	public List<Patients> getAllPatients(int doId);
+	public List<Patients> getAllPatients();
+	
+	public List<Patients> getAllPatientsDoId(int doId);
 	
 	public Patients getPatientsById(int paId);
 	

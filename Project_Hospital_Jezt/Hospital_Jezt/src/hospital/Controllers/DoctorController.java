@@ -13,9 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 import hospital.Entities.Category;
 import hospital.Entities.Director;
 import hospital.Entities.Doctor;
+import hospital.Entities.Medicine;
+import hospital.Entities.Patients;
 import hospital.Models.CategoryDAO;
 import hospital.Models.DirectorDAO;
 import hospital.Models.DoctorDAO;
+import hospital.Models.MedicineDAO;
+import hospital.Models.PatientsDAO;
 
 /**
  * Servlet implementation class DoctorController
@@ -23,34 +27,50 @@ import hospital.Models.DoctorDAO;
 @WebServlet("/DoctorController")
 public class DoctorController extends HttpServlet {
 	
-	Doctor doc = new Doctor();
+		Doctor doc = new Doctor();
 	
-	DoctorDAO doDAO = new DoctorDAO();
+		DoctorDAO doDAO = new DoctorDAO();
 	
-	Director dir = new Director();
+		Director dir = new Director();
 	
-	DirectorDAO diDAO = new DirectorDAO();
+		DirectorDAO diDAO = new DirectorDAO();
 	
-	Category cat = new Category();
+		Category cat = new Category();
 	
-	CategoryDAO caDAO = new CategoryDAO();
+		CategoryDAO caDAO = new CategoryDAO();
+	
+		Patients pat = new Patients();
+		
+		PatientsDAO paDAO = new PatientsDAO();
+		
+		Medicine med = new Medicine();
+		
+		MedicineDAO meDAO = new MedicineDAO();
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String action = request.getParameter("action");
 		
 		if(action.equals("getAllDoctor")) {			
-			getAllDoctor(diDAO, doDAO, request, response);			
+			getAllDoctor(doDAO, request, response);			
 		}
 		
 		else if(action.equals("Search")) {
-			String doFullName = request.getParameter("doFullName");
-			List<Doctor> listDoc = new ArrayList<Doctor>();
-			listDoc = doDAO.searchDoctorByName(doFullName);
-			dir = diDAO.getDirector();
-			request.setAttribute("dir", dir);
-			request.setAttribute("listDoc", listDoc);
-			request.getRequestDispatcher("ListDoctor.jsp").forward(request, response);
+			
+			String paFullName = request.getParameter("paFullName");
+			String meName = request.getParameter("meName");
+			if(paFullName!=null) {
+				List<Patients> listPat = new ArrayList<>();
+				listPat = paDAO.searchPatientsByName(paFullName);
+				request.setAttribute("listPat", listPat);
+				request.getRequestDispatcher("ListPatientDoctor.jsp").forward(request, response);
+			} else if(meName!=null){
+				List<Medicine> listMed = new ArrayList<>();
+				listMed = meDAO.searchMedicineByName(meName);
+				request.setAttribute("listMed", listMed);
+				request.getRequestDispatcher("ListMedicineDoctor.jsp").forward(request, response);
+			}
+			
 		}
 		
 		else if(action.equals("detail")) {
@@ -64,8 +84,7 @@ public class DoctorController extends HttpServlet {
 			
 			List<Category> listCat = new ArrayList<>();
 			listCat = caDAO.getAllCategory();
-			dir = diDAO.getDirector();
-			request.setAttribute("dir", dir);
+			
 			request.setAttribute("listCat", listCat);
 			request.getRequestDispatcher("CreateDoctor.jsp").forward(request, response);
 			
@@ -87,10 +106,10 @@ public class DoctorController extends HttpServlet {
 			doc.setCaId(Integer.parseInt(request.getParameter("caId")));
 			boolean check = doDAO.inserDoctor(doc);
 			if(check) {
-				getAllDoctor(diDAO, doDAO, request, response);
+				getAllDoctor(doDAO, request, response);
 			} else {
 				request.setAttribute("createDoctorFail", "Create fail");
-				getAllDoctor(diDAO, doDAO, request, response);
+				getAllDoctor(doDAO, request, response);
 			}
 		}
 		
@@ -122,10 +141,10 @@ public class DoctorController extends HttpServlet {
 			doc.setCaId(Integer.parseInt(request.getParameter("caId")));
 			boolean check = doDAO.updateDoctor(doc);
 			if(check) {
-				getAllDoctor(diDAO, doDAO, request, response);
+				getAllDoctor(doDAO, request, response);
 			} else {
 				request.setAttribute("updateDoctorFail", "Edit fail");
-				getAllDoctor(diDAO, doDAO, request, response);
+				getAllDoctor(doDAO, request, response);
 			}
 		}
 		
@@ -133,10 +152,10 @@ public class DoctorController extends HttpServlet {
 			int doId = Integer.parseInt(request.getParameter("doId"));
 			boolean check = doDAO.deleteDoctor(doId);
 			if(check) {
-				getAllDoctor(diDAO, doDAO, request, response);
+				getAllDoctor(doDAO, request, response);
 			} else {
 				request.setAttribute("deleteDoctorFail", "Delete fail");
-				getAllDoctor(diDAO, doDAO, request, response);
+				getAllDoctor(doDAO, request, response);
 			}
 		}
 	}
@@ -147,12 +166,10 @@ public class DoctorController extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	protected void getAllDoctor(DirectorDAO diDAO, DoctorDAO doDAO,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void getAllDoctor(DoctorDAO doDAO,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		List<Doctor> listDoc = new ArrayList<>();
 		listDoc = doDAO.getAllDoctor();
-		dir = diDAO.getDirector();
-		request.setAttribute("dir", dir);
 		request.setAttribute("listDoc", listDoc);
 		request.getRequestDispatcher("ListDoctor.jsp").forward(request, response);
 		

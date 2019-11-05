@@ -1,16 +1,10 @@
-<%@ page
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>
-    Director Home
-  </title>
+  
   <!-- Favicon -->
-  <link href="Common/Images/DirectorImages/iconDirector01.jpg" rel="icon" type="image/png">
+  <link href="${doc.doAvatar}" rel="icon" type="image/png">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
   <!-- Icons -->
@@ -29,7 +23,7 @@
       </button>
       <!-- Brand -->
       <h1>
-        DIRECTOR
+        DOCTOR
       </h1>
       <!-- User -->
       <ul class="nav align-items-center d-md-none">
@@ -55,26 +49,11 @@
           </a>
           <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
             <div class=" dropdown-header noti-title">
-              <h6 class="text-overflow m-0">Welcome!</h6>
+              <h6 class="text-overflow m-0">GoodBye !</h6>
             </div>
-            <a href="./examples/profile.html" class="dropdown-item">
-              <i class="ni ni-single-02"></i>
-              <span>My profile</span>
-            </a>
-            <a href="./examples/profile.html" class="dropdown-item">
-              <i class="ni ni-settings-gear-65"></i>
-              <span>Settings</span>
-            </a>
-            <a href="./examples/profile.html" class="dropdown-item">
-              <i class="ni ni-calendar-grid-58"></i>
-              <span>Activity</span>
-            </a>
-            <a href="./examples/profile.html" class="dropdown-item">
-              <i class="ni ni-support-16"></i>
-              <span>Support</span>
-            </a>
+           
             <div class="dropdown-divider"></div>
-            <a href="#!" class="dropdown-item">
+            <a href="DoctorLogin.jsp" class="dropdown-item">
               <i class="ni ni-user-run"></i>
               <span>Logout</span>
             </a>
@@ -88,7 +67,7 @@
           <div class="row">
             <div class="col-6 collapse-brand">
               <a href="../index.html">
-                <h1>Director</h1>
+                <h1>DOCTOR</h1>
               </a>
             </div>
             <div class="col-6 collapse-close">
@@ -100,53 +79,39 @@
           </div>
         </div>
         <!-- Form -->
-        <form class="mt-4 mb-3 d-md-none">
-          <div class="input-group input-group-rounded input-group-merge">
-            <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Search" aria-label="Search">
-            <div class="input-group-prepend">
-              <div class="input-group-text">
-                <span class="fa fa-search"></span>
-              </div>
-            </div>
-          </div>
-        </form>
+        
         <!-- Navigation -->
         <ul class="navbar-nav">
           <li class="nav-item  class=" active" ">
-          <h2 class=" nav-link active " href=" ./index.html"> <i class="ni ni-tv-2 text-primary"></i> Dashboard
-            </h2>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link " href="DirectorController?action=getDirector">
-              <i class="ni ni-single-02 text-yellow"></i> Director Information
+          <a class=" nav-link active " href="Doctor.jsp"> <i class="ni ni-tv-2 text-primary"></i> Dashboard
             </a>
           </li>
+          <hr class="my-3">
           <li class="nav-item">
-            <a class="nav-link " href="CategoryController?action=getAllCategory">
-              <i class="ni ni-planet text-blue"></i> Department Management
+            <a class="nav-link " href="DoctorDetail.jsp">
+              <i class="ni ni-single-02 text-yellow"></i> Doctor Information
             </a>
           </li>
+          <hr class="my-3">
           <li class="nav-item">
-            <a class="nav-link " href="DoctorController?action=getAllDoctor">
-              <i class="ni ni-pin-3 text-orange"></i> Doctor Management
+            <a class="nav-link " href="PatientsController?action=getAllPatientsDoId&doId=${doc.doId}">
+              <i class="ni ni-planet text-blue"></i> Patients Management
             </a>
           </li>
-          
+           <hr class="my-3">
           <li class="nav-item">
-            <a class="nav-link " href="MedicineController?action=getAllMedicine">
+            <a class="nav-link " href="MedicineController?action=getMedicineWithCaId&caId=${doc.caId}">
               <i class="ni ni-bullet-list-67 text-red"></i> Medicine Management
             </a>
           </li>
+           <hr class="my-3">
+          
           <li class="nav-item">
-            <a class="nav-link" href="./examples/login.html">
-              <i class="ni ni-key-25 text-info"></i> New
+            <a class="nav-link" href="DirectorController?action=getDirector">
+              <i class="ni ni-key-25 text-info"></i> Notice
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./examples/register.html">
-              <i class="ni ni-circle-08 text-pink"></i> Pages
-            </a>
-          </li>
+          
         </ul>
         <!-- Divider -->
         <hr class="my-3">
@@ -160,32 +125,23 @@
         <!-- Brand -->
         
         <!-- Form -->
-        <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
-          <div class="form-group mb-0">
-            <div class="input-group input-group-alternative">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-search"></i></span>
-              </div>
-              <input class="form-control" placeholder="Search" type="text">
-            </div>
-          </div>
-        </form>
+        
         <!-- User -->
         <ul class="navbar-nav align-items-center d-none d-md-flex">
           <li class="nav-item dropdown">
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder" src="Common/Images/DirectorImages/iconDirector01.jpg">
+                  <img alt="Image placeholder" src="${doc.doAvatar}">
                 </span>
                 <div class="media-body ml-2 d-none d-lg-block">
-                  <span class="mb-0 text-sm  font-weight-bold">${di.diAcc}</span>
+                  <span class="mb-0 text-sm  font-weight-bold">${doc.doAcc}</span>
                 </div>
               </div>
             </a>
             <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
               <div class=" dropdown-header noti-title">
-                <h6 class="text-overflow m-0">Welcome!</h6>
+                <h6 class="text-overflow m-0">GoodBye !</h6>
               </div>
               
               <div class="dropdown-divider"></div>
@@ -200,49 +156,17 @@
     </nav>
     <!-- End Navbar -->
     <!-- Header -->
-    <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url(DesignAdmin/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+    <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url(${doc.doAvatar}); background-size: cover; background-position: center top;">
       <!-- Mask -->
       <span class="mask bg-gradient-default opacity-8"></span>
       <!-- Header container -->
       <div class="container-fluid d-flex align-items-center">
         <div class="row">
           <div class="col-lg-7 col-md-10">
-            <h1 class="display-2 text-white">Hello ${di.diFullName}</h1>
+            <h1 class="display-2 text-white">Hello ${doc.doFullName}</h1>
             <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
             
           </div>
         </div>
       </div>
     </div>
-      <!-- Footer -->
-      <footer class="footer">
-        <div class="row align-items-center justify-content-xl-between">
-          <div class="col-xl-6">
-            <div class="copyright text-center text-xl-left text-muted">
-              &copy; 2019 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Creative Jezt</a>
-            </div>
-          </div>
-          
-        </div>
-      </footer>
-    </div>
-  </div>
-  <!--   Core   -->
-  <script src="DesignAdmin/js/plugins/jquery/dist/jquery.min.js"></script>
-  <script src="DesignAdmin/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <!--   Optional JS   -->
-  <script src="DesignAdmin/js/plugins/chart.js/dist/Chart.min.js"></script>
-  <script src="DesignAdmin/js/plugins/chart.js/dist/Chart.extension.js"></script>
-  <!--   Argon JS   -->
-  <script src="DesignAdmin/js/argon-dashboard.min.js?v=1.1.0"></script>
-  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
-  <script>
-    window.TrackJS &&
-      TrackJS.install({
-        token: "ee6fab19c5a04ac1a32a645abde4613a",
-        application: "argon-dashboard-free"
-      });
-  </script>
-</body>
-
-</html>

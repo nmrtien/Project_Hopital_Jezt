@@ -113,7 +113,7 @@ CREATE PROC checkLoginPatients
 	@paPass varchar(100)
 AS
 BEGIN
-	SELECT PaAcc,PaPass FROM Patients WHERE PaAcc = @paAcc and PaPass = @paPass;
+	SELECT * FROM Patients WHERE PaAcc = @paAcc and PaPass = @paPass;
 END
 
 GO
@@ -127,22 +127,73 @@ END
 
 GO
 
-EXEC checkPatients @paAcc = "luong" , @paPass = "1";
+EXEC checkLoginPatients @paAcc = "luong" , @paPass = "1";
 
 GO
 
-CREATE PROC getAllPatientsDoId
-	@paId int,
+CREATE PROC insertPatients
 	@paAcc varchar(100),
 	@paPass varchar(100),
 	@paFullName nvarchar(100),
-	@paPhone nvarchar(100),
+	@paPhone nvarchar(100) ,
 	@paAge int,
 	@paEmail nvarchar(100),
 	@paAvatar ntext,
 	@paAddress ntext,
 	@paContent ntext,
 	@paStatus bit,
+	@doId int
+
+AS
+BEGIN
+	INSERT INTO Patients VALUES (@paAcc,@paPass,@paFullName,@paPhone,@paAge,@paEmail,@paAvatar,@paAddress,@paContent,@paStatus,@doId);
+END
+
+GO
+
+CREATE PROC updatePatients
+	@paId int,
+	@paAcc varchar(100),
+	@paPass varchar(100),
+	@paFullName nvarchar(100),
+	@paPhone nvarchar(100) ,
+	@paAge int,
+	@paEmail nvarchar(100),
+	@paAvatar ntext,
+	@paAddress ntext,
+	@paContent ntext,
+	@paStatus bit,
+	@doId int
+	
+AS
+BEGIN
+	UPDATE Patients SET PaAcc = @paAcc,
+						PaPass = @paPass,
+						PaFullName = @paFullName,
+						PaPhone = @paFullName,
+						PaAge = @paAge,
+						PaEmail = @paEmail,
+						PaAvatar = @paAvatar,
+						PaAddress = @paAddress,
+						PaContent = @paContent,
+						PaStatus = @paStatus,
+						DoId = @doId
+	WHERE PaId = @paId;
+END
+
+GO
+
+CREATE PROC deletePatients
+	@paId int
+
+AS
+BEGIN
+	DELETE FROM Patients WHERE PaId = @paId;
+END
+
+GO
+
+CREATE PROC getAllPatientsDoId
 	@doId int
 AS
 BEGIN
@@ -151,22 +202,11 @@ END
 
 GO
 
-EXEC @getAllPatients @doId = 1;
+EXEC getAllPatientsDoId @doId = 2;
 GO
 
 CREATE PROC getAllPatients
-	@paId int,
-	@paAcc varchar(100),
-	@paPass varchar(100),
-	@paFullName nvarchar(100),
-	@paPhone nvarchar(100),
-	@paAge int,
-	@paEmail nvarchar(100),
-	@paAvatar ntext,
-	@paAddress ntext,
-	@paContent ntext,
-	@paStatus bit,
-	@doId int
+	
 AS
 BEGIN
 	SELECT * FROM Patients;
@@ -189,7 +229,7 @@ CREATE PROC checkLoginDoctor
 	@doPass varchar(100)
 AS
 BEGIN
-	SELECT DoAcc,DoPass FROM Doctor WHERE DoAcc = @doAcc and DoPass = @doPass;
+	SELECT * FROM Doctor WHERE DoAcc = @doAcc and DoPass = @doPass;
 END
 
 GO
@@ -294,7 +334,7 @@ CREATE PROC checkLoginDirector
 	@diPass varchar(100)
 AS
 BEGIN
-	SELECT DiAcc,DiPass FROM Director WHERE DiAcc = @diAcc and DiPass = @diPass;
+	SELECT * FROM Director WHERE DiAcc = @diAcc and DiPass = @diPass;
 END
 
 GO
@@ -487,3 +527,15 @@ AS
 BEGIN
 	SELECT * FROM Medicine WHERE MeName = @meName;
 END
+
+GO
+
+CREATE PROC getMedicineWithCaId
+	@caId int
+AS
+BEGIN
+	SELECT Medicine.MeId,Medicine.MeName,Medicine.MePrice,Medicine.MeProducer,Medicine.MeTitle,Medicine.MeContent,Medicine.MeDateOfManufacture,Medicine.MeExpirationDate,Medicine.MeImage,Medicine.MeStatus,Medicine.CaId FROM Category INNER JOIN Medicine ON Category.CaId = Medicine.CaId WHERE Medicine.CaId = @caId;
+END
+
+GO
+EXEC getMedicineWithCaId @caId = 2;

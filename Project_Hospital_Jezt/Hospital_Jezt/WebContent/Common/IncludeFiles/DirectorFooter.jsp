@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div align="center">
-		<h1>Login Fail</h1>
-	</div>
+
 </body>
 </html>

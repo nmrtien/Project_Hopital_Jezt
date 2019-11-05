@@ -17,5 +17,7 @@ public interface IMedicine {
 	public boolean deleteMedicine(int meId);
 	
 	public List<Medicine> searchMedicineByName(String meName);
+	
+	public List<Medicine> getMedicineWithCaId(int caId);
 
 }

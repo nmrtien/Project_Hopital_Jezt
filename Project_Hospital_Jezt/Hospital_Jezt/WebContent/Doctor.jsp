@@ -1,14 +1,13 @@
 <%@ page
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<div align="center">
-		<h1>HELLO DOCTOR ${doAcc} , your pass = ${doPass}</h1>
-	</div>
-</body>
+<html lang="en">
+	<title>
+    Doctor Home
+  </title>
+  
+	<%@ include file="Common/IncludeFiles/DoctorHeader.jsp" %>
+	
+	<%@ include file="Common/IncludeFiles/DoctorFooter.jsp" %>
+
 </html>
