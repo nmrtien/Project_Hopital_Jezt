@@ -4,7 +4,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
   <!-- Favicon -->
-  <link href="${doc.doAvatar}" rel="icon" type="image/png">
+  <link href="../Hospital_Jezt/Common/Images/DoctorImages/${doc.doAvatar}" rel="icon" type="image/png">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
   <!-- Icons -->
@@ -53,7 +53,7 @@
             </div>
            
             <div class="dropdown-divider"></div>
-            <a href="DoctorLogin.jsp" class="dropdown-item">
+            <a href="Login.jsp" class="dropdown-item">
               <i class="ni ni-user-run"></i>
               <span>Logout</span>
             </a>
@@ -132,7 +132,7 @@
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder" src="${doc.doAvatar}">
+                  <img alt="Image placeholder" src="../Hospital_Jezt/Common/Images/DoctorImages/${doc.doAvatar}">
                 </span>
                 <div class="media-body ml-2 d-none d-lg-block">
                   <span class="mb-0 text-sm  font-weight-bold">${doc.doAcc}</span>
@@ -145,7 +145,7 @@
               </div>
               
               <div class="dropdown-divider"></div>
-              <a href="DirectorLogin.jsp" class="dropdown-item">
+              <a href="Login.jsp" class="dropdown-item">
                 <i class="ni ni-user-run"></i>
                 <span>Logout</span>
               </a>
@@ -156,7 +156,7 @@
     </nav>
     <!-- End Navbar -->
     <!-- Header -->
-    <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url(${doc.doAvatar}); background-size: cover; background-position: center top;">
+    <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url(../Hospital_Jezt/Common/Images/DoctorImages/${doc.doAvatar}); background-size: cover; background-position: center top;">
       <!-- Mask -->
       <span class="mask bg-gradient-default opacity-8"></span>
       <!-- Header container -->

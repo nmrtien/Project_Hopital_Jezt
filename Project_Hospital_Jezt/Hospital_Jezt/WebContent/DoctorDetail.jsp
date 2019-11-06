@@ -69,7 +69,7 @@
                      <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-last-name"></label>
-                        <img alt="" src="${doc.doAvatar}" with="200px" height="200px">
+                        <img alt="" src="../Hospital_Jezt/Common/Images/DoctorImages/${doc.doAvatar}" with="200px" height="200px">
                       </div>
                     </div>
                     

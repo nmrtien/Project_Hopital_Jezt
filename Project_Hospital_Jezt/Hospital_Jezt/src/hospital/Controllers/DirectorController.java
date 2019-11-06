@@ -30,6 +30,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 			dir = diDAO.getDirector();
 			request.setAttribute("dir", dir);
 			request.getRequestDispatcher("DirectorDetail.jsp").forward(request, response);
+			
 		} else if(action.equals("initEditDirector")) {
 			
 			//GET diId from request

@@ -34,56 +34,43 @@ public class LoginController extends HttpServlet {
 		
 		String action = request.getParameter("action");
 		
-		String diAcc = request.getParameter("diAcc");
-		String diPass = request.getParameter("diPass");
-		String doAcc = request.getParameter("doAcc");
-		String doPass = request.getParameter("doPass");
-		String paAcc = request.getParameter("paAcc");
-		String paPass = request.getParameter("paPass");
+		String diAcc = request.getParameter("user");
+		String diPass = request.getParameter("pass");
+		String doAcc = request.getParameter("user");
+		String doPass = request.getParameter("pass");
+		String paAcc = request.getParameter("user");
+		String paPass = request.getParameter("pass");
 		
 		Director dir = new Director();
-		DirectorDAO dirDAO = new DirectorDAO();
+		DirectorDAO diDAO = new DirectorDAO();
 		
 		Doctor doc = new Doctor();
-		DoctorDAO docDAO = new DoctorDAO();
+		DoctorDAO doDAO = new DoctorDAO();
 		
 		Patients pat = new Patients();
-		PatientsDAO patDAO = new PatientsDAO();
+		PatientsDAO paDAO = new PatientsDAO();
 		
-		if(action.equals("patients")) {
-			pat = patDAO.checkLoginPatients(paAcc, paPass);
-			if(pat!=null) {
-				request.setAttribute("paAcc", paAcc);
-				request.setAttribute("paPass", paPass);
-				request.getRequestDispatcher("Patients.jsp").forward(request, response);
-			}else {
-				request.setAttribute("message", "Login fail !");
-				request.getRequestDispatcher("PatientsLogin.jsp").forward(request, response);
-			}
-			
-		} else if(action.equals("doctor")) {
-			doc = docDAO.checkLoginDoctor(doAcc, doPass);
-			if(doc!=null) {
-				HttpSession session = request.getSession();
-				session.setAttribute("doc", doc);
-				
-				request.getRequestDispatcher("Doctor.jsp").forward(request, response);
-			}else {
-				request.setAttribute("message", "Login fail !");
-				request.getRequestDispatcher("DoctorLogin.jsp").forward(request, response);
-			}
-		} else if(action.equals("director")) {
-			dir = dirDAO.checkLoginDirector(diAcc, diPass);
-			Director di = dirDAO.getDirector();
-			if(dir!=null) {
-				request.setAttribute("di", di);
-				request.setAttribute("diAcc", diAcc);
-				request.setAttribute("diPass", diPass);
-				request.getRequestDispatcher("Director.jsp").forward(request, response);
-			}else {
-				request.setAttribute("message", "Login fail !");
-				request.getRequestDispatcher("DirectorLogin.jsp").forward(request, response);
-			}
+		pat = paDAO.checkLoginPatients(paAcc, paPass);
+		doc = doDAO.checkLoginDoctor(doAcc, doPass);
+		dir = diDAO.checkLoginDirector(diAcc, diPass);
+		if(pat!=null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("pat", pat);
+			request.getRequestDispatcher("Patients.jsp").forward(request, response);
+		}
+		else if(doc!=null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("doc", doc);
+			request.getRequestDispatcher("Doctor.jsp").forward(request, response);
+		}
+		else if(dir!=null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("dir", dir);
+			request.getRequestDispatcher("Director.jsp").forward(request, response);
+		}
+		else if(pat==null && doc==null && dir==null) {
+			request.setAttribute("message", "Account not valid !");
+			request.getRequestDispatcher("Login.jsp").forward(request, response);
 		}
 	}
 

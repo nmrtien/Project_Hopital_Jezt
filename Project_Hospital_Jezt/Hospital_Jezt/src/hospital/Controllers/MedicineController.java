@@ -94,6 +94,7 @@ public class MedicineController extends HttpServlet {
 			med.setMeId(Integer.parseInt(request.getParameter("meId")));
 			med.setMeName(request.getParameter("meName"));
 			med.setMePrice(Float.parseFloat(request.getParameter("mePrice")));
+			med.setMeProducer(request.getParameter("meProducer"));
 			med.setMeTitle(request.getParameter("meTitle"));
 			med.setMeContent(request.getParameter("meContent"));
 			try {
@@ -132,6 +133,7 @@ public class MedicineController extends HttpServlet {
 			med = new Medicine();
 			med.setMeName(request.getParameter("meName"));
 			med.setMePrice(Float.parseFloat(request.getParameter("mePrice")));
+			med.setMeProducer(request.getParameter("meProducer"));
 			med.setMeTitle(request.getParameter("meTitle"));
 			med.setMeContent(request.getParameter("meContent"));
 			try {

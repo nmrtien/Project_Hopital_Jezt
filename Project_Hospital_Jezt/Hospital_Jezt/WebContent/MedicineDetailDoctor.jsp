@@ -94,7 +94,7 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-last-name"></label>
-                        <img alt="" src="${med.meImage}" with="500px" height="200px">
+                        <img alt="" src="../Hospital_Jezt/Common/Images/MedicineImages/${med.meImage}" with="500px" height="200px">
                       </div>
                     </div>
                      
