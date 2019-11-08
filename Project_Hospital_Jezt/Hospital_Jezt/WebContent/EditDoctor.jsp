@@ -40,14 +40,14 @@
                   
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" for="input-username">Username</label>
-                        <input type="text" class="form-control form-control-alternative" value="${doc.doAcc}" name="doAcc" />
+                        <label class="form-control-label" for="input-username">Username:</label>
+                        <input type="text" class="form-control form-control-alternative" placeholder="" value="${doc.doAcc}" name="doAcc" readonly="true" />
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" >Password</label>
-                        <input type="text"  class="form-control form-control-alternative" value="${doc.doPass}" name="doPass" />
+                        <label class="form-control-label" >Password: ${passFail}</label>
+                        <input type="text"  class="form-control form-control-alternative" placeholder="" value="${doc.doPass}" name="doPass" />
                       </div>
                     </div>
                     <div class="col-lg-6">
@@ -60,60 +60,73 @@
                   <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" >FullName</label>
-                        <input type="text"  class="form-control form-control-alternative" value="${doc.doFullName}" name="doFullName" />
+                        <label class="form-control-label" >FullName: ${fullnameFail}</label>
+                        <input type="text"  class="form-control form-control-alternative" placeholder="" value="${doc.doFullName}" name="doFullName" />
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" >Phone</label>
-                        <input type="text"  class="form-control form-control-alternative" value="${doc.doPhone}" name="doPhone" />
+                        <label class="form-control-label" >Phone: ${phoneFail}</label>
+                        <input type="text"  class="form-control form-control-alternative" placeholder="" value="${doc.doPhone}" name="doPhone" />
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" >Age</label>
-                        <input type="text"  class="form-control form-control-alternative" value="${doc.doAge}" name="doAge" />
+                        <label class="form-control-label" >Age: ${ageFail}</label>
+                        <input type="text"  class="form-control form-control-alternative" placeholder="" value="${doc.doAge}" name="doAge" />
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" >Email</label>
-                        <input type="text"  class="form-control form-control-alternative" value="${doc.doEmail}" name="doEmail" />
+                        <label class="form-control-label" >Email: ${emailFail}</label>
+                        <input type="text"  class="form-control form-control-alternative" placeholder="" value="${doc.doEmail}" name="doEmail" />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" >Change Avatar: ${avatarFail}</label>
+                        <input type="file"  class="form-control form-control-alternative" placeholder="" value="${doc.doAvatar}" name="doAvatar" />
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" >Avatar</label>
-                        <input type="text"  class="form-control form-control-alternative" value="${doc.doAvatar}" name="doAvatar" />
+                        <img src="../Hospital_Jezt/Common/Images/DoctorImages/${doc.doAvatar}" height="100" with="150"/>
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" >Address</label>
-                        <input type="text"  class="form-control form-control-alternative" value="${doc.doAddress}" name="doAddress" />
+                        <label class="form-control-label" >Address: ${addressFail}</label>
+                        <input type="text"  class="form-control form-control-alternative" placeholder="" value="${doc.doAddress}" name="doAddress" />
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" >Content</label>
-                        <input type="text"  class="form-control form-control-alternative" value="${doc.doContent}" name="doContent" />
+                        <input type="text"  class="form-control form-control-alternative"  value="${doc.doContent}" name="doContent" />
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" >Status</label>
-                        <input type="text"  class="form-control form-control-alternative" value="${doc.doStatus}" name="doStatus" />
+                        <input type="text"  class="form-control form-control-alternative"  value="${doc.doStatus}" name="doStatus" />
                       </div>
                     </div>
-                    
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" >Roll ID</label>
+                        <input type="text"  class="form-control form-control-alternative"  value="${doc.rollId}" name="rollId" readonly="true" />
+                      </div>
+                    </div>
+                    <h3>${caIdFail}</h3>
                     <div class="col-lg-6">
                       <div class="form-group">
 					<label class="form-control-label" >Department: </label>
 					
 						<select id="caId" name="caId">
-								<option>Choose department</option>
+								
 							<c:forEach items="${listCat}" var="cat">
+							
 								<option value="${cat.caId}">${cat.caName}</option>
 							</c:forEach>
 						 </select>

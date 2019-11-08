@@ -105,7 +105,7 @@
 					<label class="form-control-label" >Department: </label>
 					
 						<select id="caId" name="caId">
-								<option>Choose department</option>
+								
 							<c:forEach items="${listCat}" var="cat">
 								<option value="${cat.caId}">${cat.caName}</option>
 							</c:forEach>

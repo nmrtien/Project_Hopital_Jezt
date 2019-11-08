@@ -37,10 +37,13 @@ public class PatientsDAO implements IPatients{
 				pat.setPaContent(rs.getString("PaContent"));
 				pat.setPaStatus(rs.getBoolean("PaStatus"));
 				pat.setDoId(rs.getInt("DoId"));
+				pat.setRollId(rs.getInt("RollId"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			
+		}finally {
+			ConnectionDB.closeAll(conn, callst);
 		}
 		return pat;
 	}
@@ -70,10 +73,13 @@ public class PatientsDAO implements IPatients{
 				pat.setPaContent(rs.getString("PaContent"));
 				pat.setPaStatus(rs.getBoolean("PaStatus"));
 				pat.setDoId(rs.getInt("DoId"));
+				pat.setRollId(rs.getInt("RollId"));
 				listPat.add(pat);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			ConnectionDB.closeAll(conn, callst);
 		}
 		return listPat;
 	}
@@ -102,10 +108,13 @@ public class PatientsDAO implements IPatients{
 				pat.setPaAddress(rs.getString("PaAddress"));
 				pat.setPaContent(rs.getString("PaContent"));
 				pat.setPaStatus(rs.getBoolean("PaStatus"));
-				pat.setDoId(rs.getInt("DoId"));				
+				pat.setDoId(rs.getInt("DoId"));
+				pat.setRollId(rs.getInt("RollId"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			ConnectionDB.closeAll(conn, callst);
 		}
 		return pat;
 	}
@@ -117,8 +126,8 @@ public class PatientsDAO implements IPatients{
 		boolean check = true;
 		try {
 			conn = ConnectionDB.openConection();
-			callst = conn.prepareCall("{call insertPatients(?,?,?,?,?,?,?,?,?,?,?)}");
-			ResultSet rs = callst.executeQuery();
+			callst = conn.prepareCall("{call insertPatients(?,?,?,?,?,?,?,?,?,?,?,?)}");
+			
 			callst.setString(1, pat.getPaAcc());
 			callst.setString(2, pat.getPaPass());
 			callst.setString(3, pat.getPaFullName());
@@ -130,10 +139,13 @@ public class PatientsDAO implements IPatients{
 			callst.setString(9, pat.getPaContent());
 			callst.setBoolean(10, pat.isPaStatus());
 			callst.setInt(11, pat.getDoId());
+			callst.setInt(12, pat.getRollId());
 			callst.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 			check = false;
+		}finally {
+			ConnectionDB.closeAll(conn, callst);
 		}
 		return check;
 	}
@@ -145,8 +157,8 @@ public class PatientsDAO implements IPatients{
 		boolean check = true;
 		try {
 			conn = ConnectionDB.openConection();
-			callst = conn.prepareCall("{call updatePatients(?,?,?,?,?,?,?,?,?,?,?,?)}");
-			ResultSet rs = callst.executeQuery();
+			callst = conn.prepareCall("{call updatePatients(?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+			
 			callst.setInt(1, pat.getPaId());
 			callst.setString(2, pat.getPaAcc());
 			callst.setString(3, pat.getPaPass());
@@ -159,10 +171,13 @@ public class PatientsDAO implements IPatients{
 			callst.setString(10, pat.getPaContent());
 			callst.setBoolean(11, pat.isPaStatus());
 			callst.setInt(12, pat.getDoId());
+			callst.setInt(13, pat.getRollId());
 			callst.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 			check = false;
+		}finally {
+			ConnectionDB.closeAll(conn, callst);
 		}
 		return check;
 	}
@@ -175,12 +190,14 @@ public class PatientsDAO implements IPatients{
 		try {
 			conn = ConnectionDB.openConection();
 			callst = conn.prepareCall("{call deletePatients(?)}");
-			ResultSet rs = callst.executeQuery();
+			
 			callst.setInt(1, paId);		
 			callst.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 			check = false;
+		}finally {
+			ConnectionDB.closeAll(conn, callst);
 		}
 		return check;
 	}
@@ -210,10 +227,13 @@ public class PatientsDAO implements IPatients{
 				pat.setPaContent(rs.getString("PaContent"));
 				pat.setPaStatus(rs.getBoolean("PaStatus"));
 				pat.setDoId(rs.getInt("DoId"));
+				pat.setRollId(rs.getInt("RollId"));
 				listPat.add(pat);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			ConnectionDB.closeAll(conn, callst);
 		}
 		return listPat;
 	}
@@ -242,12 +262,49 @@ public class PatientsDAO implements IPatients{
 				pat.setPaContent(rs.getString("PaContent"));
 				pat.setPaStatus(rs.getBoolean("PaStatus"));
 				pat.setDoId(rs.getInt("DoId"));
+				pat.setRollId(rs.getInt("RollId"));
 				listPat.add(pat);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			ConnectionDB.closeAll(conn, callst);
 		}
 		return listPat;
+	}
+
+	@Override
+	public Patients checkAccPatients(String paAcc) {
+		Connection conn = null;
+		CallableStatement callst = null;
+		Patients pat = null;
+		try {
+			conn = ConnectionDB.openConection();
+			callst = conn.prepareCall("{call checkAccPatients(?)}");
+			callst.setString(1, paAcc);
+			ResultSet rs = callst.executeQuery();
+			if(rs.next()) {
+				pat = new Patients();
+				pat.setPaId(rs.getInt("PaId"));
+				pat.setPaAcc(rs.getString("PaAcc"));
+				pat.setPaPass(rs.getString("PaPass"));
+				pat.setPaFullName(rs.getString("PaFullName"));
+				pat.setPaPhone(rs.getString("PaPhone"));
+				pat.setPaAge(rs.getInt("PaAge"));
+				pat.setPaEmail(rs.getString("PaEmail"));
+				pat.setPaAvatar(rs.getString("PaAvatar"));
+				pat.setPaAddress(rs.getString("PaAddress"));
+				pat.setPaContent(rs.getString("PaContent"));
+				pat.setPaStatus(rs.getBoolean("PaStatus"));
+				pat.setDoId(rs.getInt("DoId"));
+				pat.setRollId(rs.getInt("RollId"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionDB.closeAll(conn, callst);
+		}
+		return pat;
 	}
 
 }

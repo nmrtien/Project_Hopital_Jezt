@@ -22,5 +22,7 @@ public interface IPatients {
 	public boolean deletePatients(int paId);
 	
 	public List<Patients> searchPatientsByName(String paFullName);
+	
+	public Patients checkAccPatients(String paAcc);
 
 }

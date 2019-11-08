@@ -55,7 +55,7 @@
                       </div>
                     </th>
                     <td>
-                      <img src="${doc.doAvatar}" alt="Doctor face" height="100" width="150">
+                      <img src="../Hospital_Jezt/Common/Images/DoctorImages/${doc.doAvatar}" alt="Doctor face" height="100" width="150">
                     </td>
                     <td>
                       ${doc.doFullName}

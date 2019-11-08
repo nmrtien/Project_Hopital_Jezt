@@ -126,7 +126,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/foundation/colors.html">
-              <i class="ni ni-palette"></i> Foundation
+              <i class="ni ni-palette"></i> Oder
             </a>
           </li>
           <li class="nav-item">

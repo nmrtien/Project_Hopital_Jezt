@@ -74,7 +74,8 @@
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                    			
                           
-                          <a class="dropdown-item" href="PatientsController?action=getPatientsById&paId=${pat.paId}">Detail</a>
+                          <a class="dropdown-item" href="PatientsController?action=getPatientsByIdDoctor&paId=${pat.paId}">Detail</a>
+                          <a class="dropdown-item" href="PatientsController?action=initEdit&paId=${pat.paId}">Edit</a>
                           
                           
                         </div>

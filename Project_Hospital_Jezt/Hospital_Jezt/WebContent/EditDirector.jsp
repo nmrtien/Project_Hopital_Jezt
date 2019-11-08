@@ -25,6 +25,8 @@
               <div class="row align-items-center">
                 <div class="col-8">
                   <h3 class="mb-0">My account</h3>
+                  </br>
+                  <h4>${message}</h4>
                 </div>
                 <div class="col-4 text-right">
                   <input type="submit" value="SAVE" name="action" class="btn btn-sm btn-primary" />
@@ -38,22 +40,22 @@
                   <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" for="input-username">Username</label>
-                        <input type="text" class="form-control form-control-alternative" value="${dir.diAcc}" name="diAcc" />
+                        <label class="form-control-label" for="input-username">Username: ${accFail}</label>
+                        <input type="text" class="form-control form-control-alternative" placeholder="" value="${dir.diAcc}" name="diAcc" />
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" >Password</label>
-                        <input type="text"  class="form-control form-control-alternative" value="${dir.diPass}" name="diPass" />
+                        <label class="form-control-label" >Password: ${passFail}</label>
+                        <input type="text"  class="form-control form-control-alternative" placeholder="" value="${dir.diPass}" name="diPass" />
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" >FullName</label>
-                        <input type="text"  class="form-control form-control-alternative" value="${dir.diFullName}" name="diFullName" />
+                        <label class="form-control-label" >FullName: ${fullNameFail}</label>
+                        <input type="text"  class="form-control form-control-alternative" placeholder="" value="${dir.diFullName}" name="diFullName" />
                       </div>
                     </div>
                     <div class="col-lg-6">
@@ -72,8 +74,8 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
-                        <label class="form-control-label" >Phone</label>
-                        <input  class="form-control form-control-alternative" value="${dir.diPhone}" name="diPhone" type="text" />
+                        <label class="form-control-label" >Phone: ${phoneFail}</label>
+                        <input  class="form-control form-control-alternative"  value="${dir.diPhone}" name="diPhone" type="text" />
                       </div>
                     </div>
                   </div>
@@ -90,6 +92,12 @@
                   <div class="form-group">
                     <label>Notice</label>
                     <input type="text" class="form-control form-control-alternative" value="${dir.diContent}" name="diContent" />
+                  </div>
+                </div>
+                <div class="pl-lg-4">
+                  <div class="form-group">
+                    <label>RollId</label>
+                    <input type="text" class="form-control form-control-alternative" value="${dir.rollId}" name="rollId" readonly="true" />
                   </div>
                 </div>
               </form>

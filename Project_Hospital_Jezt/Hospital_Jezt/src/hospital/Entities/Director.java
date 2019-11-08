@@ -9,13 +9,14 @@ public class Director {
 	private String diPhone;
 	private String diContent;
 	private boolean diStatus;
+	private int rollId;
 	
 	public Director() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public Director(int diId, String diAcc, String diPass, String diFullName, String diPhone, String diContent,
-			boolean diStatus) {
+			boolean diStatus, int rollId) {
 		
 		this.diId = diId;
 		this.diAcc = diAcc;
@@ -24,6 +25,7 @@ public class Director {
 		this.diPhone = diPhone;
 		this.diContent = diContent;
 		this.diStatus = diStatus;
+		this.rollId = rollId;
 	}
 
 	public int getDiId() {
@@ -82,6 +84,12 @@ public class Director {
 		this.diStatus = diStatus;
 	}
 	
+	public int getRollId() {
+		return rollId;
+	}
 	
+	public void setRollId(int rollId) {
+		this.rollId = rollId;
+	}
 	
 }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hospital.Connections.ConnectionDB;
+import hospital.Entities.Category;
 import hospital.Entities.Doctor;
 import hospital.Interfaces.IDoctor;
 
@@ -37,9 +38,12 @@ public class DoctorDAO implements IDoctor{
 				doc.setDoContent(rs.getString("DoContent"));
 				doc.setDoStatus(rs.getBoolean("DoStatus"));
 				doc.setCaId(rs.getInt("CaId"));
+				doc.setRollId(rs.getInt("RollId"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			ConnectionDB.closeAll(conn, callst);
 		}
 		return doc;
 	}
@@ -52,10 +56,12 @@ public class DoctorDAO implements IDoctor{
 		try {
 			conn = ConnectionDB.openConection();
 			callst = conn.prepareCall("{call getAllDoctor()}");
+			
 			ResultSet rs = callst.executeQuery();
 			listDoc = new ArrayList<>();
 			while(rs.next()) {
 				Doctor doc = new Doctor();
+				
 				doc.setDoId(rs.getInt("DoId"));
 				doc.setDoAcc(rs.getString("DoAcc"));
 				doc.setDoPass(rs.getString("DoPass"));
@@ -65,14 +71,16 @@ public class DoctorDAO implements IDoctor{
 				doc.setDoEmail(rs.getString("DoEmail"));
 				doc.setDoAvatar(rs.getString("DoAvatar"));
 				doc.setDoAddress(rs.getString("DoAddress"));
-				doc.setDoContent(rs.getString("DoContent"));
-				doc.setDoStatus(rs.getBoolean("DoStatus"));
+				doc.setDoContent(rs.getString("DoContent"));								
 				doc.setCaId(rs.getInt("CaId"));
+				doc.setRollId(rs.getInt("RollId"));
 				listDoc.add(doc);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			
+		}finally {
+			ConnectionDB.closeAll(conn, callst);
 		}
 		return listDoc;
 	}
@@ -101,9 +109,12 @@ public class DoctorDAO implements IDoctor{
 				doc.setDoContent(rs.getString("DoContent"));
 				doc.setDoStatus(rs.getBoolean("DoStatus"));
 				doc.setCaId(rs.getInt("CaId"));
+				doc.setRollId(rs.getInt("RollId"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			ConnectionDB.closeAll(conn, callst);
 		}
 		return doc;
 	}
@@ -115,7 +126,7 @@ public class DoctorDAO implements IDoctor{
 		boolean check = true;
 		try {
 			conn = ConnectionDB.openConection();
-			callst = conn.prepareCall("{call insertDoctor(?,?,?,?,?,?,?,?,?,?,?)}");
+			callst = conn.prepareCall("{call insertDoctor(?,?,?,?,?,?,?,?,?,?,?,?)}");
 			callst.setString(1, doc.getDoAcc());
 			callst.setString(2, doc.getDoPass());
 			callst.setString(3, doc.getDoFullName());
@@ -127,10 +138,13 @@ public class DoctorDAO implements IDoctor{
 			callst.setString(9, doc.getDoContent());
 			callst.setBoolean(10, doc.isDoStatus());
 			callst.setInt(11, doc.getCaId());
+			callst.setInt(12, doc.getRollId());
 			callst.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 			check = false;
+		}finally {
+			ConnectionDB.closeAll(conn, callst);
 		}
 		return check;
 	}
@@ -142,7 +156,7 @@ public class DoctorDAO implements IDoctor{
 		boolean check = true;
 		try {
 			conn = ConnectionDB.openConection();
-			callst = conn.prepareCall("{call updateDoctor(?,?,?,?,?,?,?,?,?,?,?,?)}");
+			callst = conn.prepareCall("{call updateDoctor(?,?,?,?,?,?,?,?,?,?,?,?,?)}");
 			callst.setInt(1, doc.getDoId());
 			callst.setString(2, doc.getDoAcc());
 			callst.setString(3, doc.getDoPass());
@@ -155,10 +169,13 @@ public class DoctorDAO implements IDoctor{
 			callst.setString(10, doc.getDoContent());
 			callst.setBoolean(11, doc.isDoStatus());
 			callst.setInt(12, doc.getCaId());
+			callst.setInt(13, doc.getRollId());
 			callst.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 			check = false;
+		}finally {
+			ConnectionDB.closeAll(conn, callst);
 		}
 		return check;
 	}
@@ -176,6 +193,8 @@ public class DoctorDAO implements IDoctor{
 		} catch (Exception e) {
 			e.printStackTrace();
 			check = false;
+		}finally {
+			ConnectionDB.closeAll(conn, callst);
 		}
 		return check;
 	}
@@ -205,12 +224,68 @@ public class DoctorDAO implements IDoctor{
 				doc.setDoContent(rs.getString("DoContent"));
 				doc.setDoStatus(rs.getBoolean("DoStatus"));
 				doc.setCaId(rs.getInt("CaId"));
+				doc.setRollId(rs.getInt("RollId"));
 				listDoc.add(doc);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			ConnectionDB.closeAll(conn, callst);
 		}
 		return listDoc;
+	}
+
+	@Override
+	public Doctor checkAccDoctor(String doAcc) {
+		Connection conn = null;
+		CallableStatement callst = null;
+		Doctor doc = null;
+		try {
+			conn = ConnectionDB.openConection();
+			callst = conn.prepareCall("{call checkAccDoctor(?)}");
+			callst.setString(1, doAcc);
+			ResultSet rs = callst.executeQuery();
+			
+			while(rs.next()) {
+				doc = new Doctor();
+				doc.setDoId(rs.getInt("DoId"));
+				doc.setDoAcc(rs.getString("DoAcc"));
+				doc.setDoPass(rs.getString("DoPass"));
+				doc.setDoFullName(rs.getString("DoFullName"));
+				doc.setDoPhone(rs.getString("DoPhone"));
+				doc.setDoAge(rs.getInt("DoAge"));
+				doc.setDoEmail(rs.getString("DoEmail"));
+				doc.setDoAvatar(rs.getString("DoAvatar"));
+				doc.setDoAddress(rs.getString("DoAddress"));
+				doc.setDoContent(rs.getString("DoContent"));
+				doc.setDoStatus(rs.getBoolean("DoStatus"));
+				doc.setCaId(rs.getInt("CaId"));
+				doc.setRollId(rs.getInt("RollId"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			ConnectionDB.closeAll(conn, callst);
+		}
+		return doc;
+	}
+
+	@Override
+	public int countAllDoctor() {
+		Connection conn = null;
+		CallableStatement callst = null;
+		int countAllDoctor = 0 ;
+		try {
+			conn = ConnectionDB.openConection();
+			callst = conn.prepareCall("{call countAllDoctor()}");
+			ResultSet rs = callst.executeQuery();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			ConnectionDB.closeAll(conn, callst);
+		}
+		return countAllDoctor;
 	}
 
 }

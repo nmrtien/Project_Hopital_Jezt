@@ -87,6 +87,12 @@
                     <input type="text" class="form-control form-control-alternative" value="${dir.diContent}" readonly="true" />
                   </div>
                 </div>
+                <div class="pl-lg-4">
+                  <div class="form-group">
+                    <label>RollId</label>
+                    <input type="text" class="form-control form-control-alternative" value="${dir.rollId}" readonly="true" />
+                  </div>
+                </div>
               </form>
             </div>
           </div>

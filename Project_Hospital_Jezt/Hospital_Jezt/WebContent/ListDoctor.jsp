@@ -45,7 +45,7 @@
                     <th>ID</th>
 					<th>AVATAR</th>
 					<th>FULLNAME</th>
-					<th>Department ID</th>
+					<th>Department</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>

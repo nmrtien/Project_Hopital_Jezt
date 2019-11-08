@@ -14,13 +14,14 @@ public class Patients {
 	private String paContent;
 	private boolean paStatus;
 	private int doId;
+	private int rollId;
 	
 	public Patients() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public Patients(int paId, String paAcc, String paPass, String paFullName, String paPhone, int paAge, String paEmail,
-			String paAvatar, String paAddress, String paContent, boolean paStatus, int doId) {
+			String paAvatar, String paAddress, String paContent, boolean paStatus, int doId, int rollId) {
 		
 		this.paId = paId;
 		this.paAcc = paAcc;
@@ -34,6 +35,7 @@ public class Patients {
 		this.paContent = paContent;
 		this.paStatus = paStatus;
 		this.doId = doId;
+		this.rollId = rollId;
 	}
 
 	public int getPaId() {
@@ -132,4 +134,11 @@ public class Patients {
 		return doId;
 	}
 	
+	public void setRollId(int rollId) {
+		this.rollId = rollId;
+	}
+	
+	public int getRollId() {
+		return rollId;
+	}
 }

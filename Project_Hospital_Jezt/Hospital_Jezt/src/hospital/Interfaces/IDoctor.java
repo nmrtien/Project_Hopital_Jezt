@@ -2,6 +2,7 @@ package hospital.Interfaces;
 
 import java.util.List;
 
+import hospital.Entities.Category;
 import hospital.Entities.Doctor;
 
 public interface IDoctor {
@@ -19,5 +20,9 @@ public interface IDoctor {
 	public boolean deleteDoctor(int doId);
 	
 	public List<Doctor> searchDoctorByName(String doFullName);
+	
+	public Doctor checkAccDoctor(String doAcc);
+	
+	public int countAllDoctor();
 	
 }

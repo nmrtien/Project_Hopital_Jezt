@@ -30,9 +30,12 @@ public class DirectorDAO implements IDirector{
 				dir.setDiPhone(rs.getString("DiPhone"));
 				dir.setDiContent(rs.getString("DiContent"));
 				dir.setDiStatus(rs.getBoolean("DiStatus"));
+				dir.setRollId(rs.getInt("RollId"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			ConnectionDB.closeAll(conn, callst);
 		}
 		return dir;
 	}
@@ -56,9 +59,12 @@ public class DirectorDAO implements IDirector{
 				dir.setDiPhone(rs.getString("DiPhone"));
 				dir.setDiContent(rs.getString("DiContent"));
 				dir.setDiStatus(rs.getBoolean("DiStatus"));
+				dir.setRollId(rs.getInt("RollId"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			ConnectionDB.closeAll(conn, callst);
 		}
 		return dir;
 	}
@@ -81,9 +87,12 @@ public class DirectorDAO implements IDirector{
 				dir.setDiPhone(rs.getString("DiPhone"));
 				dir.setDiContent(rs.getString("DiContent"));
 				dir.setDiStatus(rs.getBoolean("DiStatus"));
+				dir.setRollId(rs.getInt("RollId"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			ConnectionDB.closeAll(conn, callst);
 		}
 		return dir;
 	}
@@ -95,7 +104,7 @@ public class DirectorDAO implements IDirector{
 		boolean check = true;
 		try {
 			conn = ConnectionDB.openConection();
-			callst = conn.prepareCall("{call updateDirector(?,?,?,?,?,?,?)}");
+			callst = conn.prepareCall("{call updateDirector(?,?,?,?,?,?,?,?)}");
 			callst.setInt(1, dir.getDiId());
 			callst.setString(2, dir.getDiAcc());
 			callst.setString(3, dir.getDiPass());
@@ -103,10 +112,13 @@ public class DirectorDAO implements IDirector{
 			callst.setString(5, dir.getDiPhone());
 			callst.setString(6, dir.getDiContent());
 			callst.setBoolean(7, dir.isDiStatus());
+			callst.setInt(8, dir.getRollId());
 			callst.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 			check = false;
+		}finally {
+			ConnectionDB.closeAll(conn, callst);
 		}
 		return check;
 	}

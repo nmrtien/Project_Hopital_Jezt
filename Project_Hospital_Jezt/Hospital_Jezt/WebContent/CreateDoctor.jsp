@@ -40,13 +40,13 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-username">Username</label>
-                        <input type="text" class="form-control form-control-alternative" name="doAcc" />
+                        <input type="text" class="form-control form-control-alternative" placeholder="${accFail}${accFail02}" name="doAcc" />
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" >Password</label>
-                        <input type="text"  class="form-control form-control-alternative" name="doPass" />
+                        <input type="text"  class="form-control form-control-alternative" placeholder="${passFail}" name="doPass" />
                       </div>
                     </div>
                   </div>
@@ -54,37 +54,37 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" >FullName</label>
-                        <input type="text"  class="form-control form-control-alternative" name="doFullName" />
+                        <input type="text"  class="form-control form-control-alternative" placeholder="${fullnameFail}" name="doFullName" />
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" >Phone</label>
-                        <input type="text"  class="form-control form-control-alternative" name="doPhone" />
+                        <input type="text"  class="form-control form-control-alternative" placeholder="${phoneFail}" name="doPhone" />
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" >Age</label>
-                        <input type="text"  class="form-control form-control-alternative" name="doAge" />
+                        <input type="text"  class="form-control form-control-alternative" placeholder="${ageFail}" name="doAge" />
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" >Email</label>
-                        <input type="text"  class="form-control form-control-alternative" name="doEmail" />
+                        <input type="text"  class="form-control form-control-alternative" placeholder="${emailFail}" name="doEmail" />
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" >Avatar</label>
-                        <input type="file"  class="form-control form-control-alternative" name="doAvatar" />
+                        <input type="file"  class="form-control form-control-alternative" placeholder="${avatarFail}" name="doAvatar" />
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" >Address</label>
-                        <input type="text"  class="form-control form-control-alternative" name="doAddress" />
+                        <input type="text"  class="form-control form-control-alternative" placeholder="${addressFail}" name="doAddress" />
                       </div>
                     </div>
                     <div class="col-lg-6">
@@ -101,10 +101,17 @@
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
+                        <label class="form-control-label" >Roll ID</label>
+                        <input type="text"  class="form-control form-control-alternative" value="2" name="rollId" readonly="true" />
+                      </div>
+                    </div>
+                    <h3>${caIdFail}</h3>
+                    <div class="col-lg-6">
+                      <div class="form-group">
 					<label class="form-control-label" >Department: </label>
-					
+					</br>
 						<select id="caId" name="caId">
-								<option>Choose department</option>
+								
 							<c:forEach items="${listCat}" var="cat">
 								<option value="${cat.caId}">${cat.caName}</option>
 							</c:forEach>

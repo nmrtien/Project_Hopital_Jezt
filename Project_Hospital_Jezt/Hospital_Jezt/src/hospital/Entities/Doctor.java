@@ -14,13 +14,14 @@ public class Doctor {
 	private String doContent;
 	private boolean doStatus;
 	private int caId;
+	private int rollId;
 	
 	public Doctor() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public Doctor(int doId, String doAcc, String doPass, String doFullName, String doPhone, int doAge, String doEmail,
-			String doAvatar, String doAddress, String doContent, boolean doStatus, int caId) {
+			String doAvatar, String doAddress, String doContent, boolean doStatus, int caId, int rollId) {
 		
 		this.doId = doId;
 		this.doAcc = doAcc;
@@ -34,6 +35,7 @@ public class Doctor {
 		this.doContent = doContent;
 		this.doStatus = doStatus;
 		this.caId = caId;
+		this.rollId = rollId;
 	}
 
 	public int getDoId() {
@@ -132,4 +134,11 @@ public class Doctor {
 		this.caId = caId;
 	}
 	
+	public int getRollId() {
+		return rollId;
+	}
+	
+	public void setRollId(int rollId) {
+		this.rollId = rollId;
+	}
 }

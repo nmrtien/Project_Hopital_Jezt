@@ -11,7 +11,7 @@
      Login
   </title>
   <!-- Favicon -->
-  <link href="DesignAdmin/img/brand/favicon.png" rel="icon" type="image/png">
+  <link href="DesignAdmin/img/icons/common/director-icon.png" rel="icon" type="image/png">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
   <!-- Icons -->
@@ -80,11 +80,15 @@
               <div class="btn-wrapper text-center">
                 <a  class="btn btn-neutral btn-icon">
                  
-                  <span class="btn-inner--text" style="color:red">Director</span>
+                  <span class="btn-inner--text" style="color:red">YOU</span>
+                </a>
+                <a  class="btn btn-neutral btn-icon">
+                 
+                  <span class="btn-inner--text" style="color:cyan">and</span>
                 </a>
                 <a  class="btn btn-neutral btn-icon">
                   
-                  <span class="btn-inner--text" style="color:green">Doctor</span>
+                  <span class="btn-inner--text" style="color:green">ME</span>
                 </a>
               </div>
             </div>
@@ -96,7 +100,7 @@
               	
                 <a href="Home.jsp" class="btn btn-neutral btn-icon">
                  
-                  <span class="btn-inner--text" style="color:#2559b1;">Hostpital Jezt</span>
+                  <span class="btn-inner--text" style="color:#2559b1;">Life Journey</span>
                 </a>
               	</br> 
               	

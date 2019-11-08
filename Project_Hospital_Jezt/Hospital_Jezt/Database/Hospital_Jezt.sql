@@ -74,7 +74,7 @@ CREATE TABLE Patients
 	PaStatus bit,
 	DoId int foreign key references Doctor(DoId)
 )
-
+ALTER TABLE Patients DROP cOLUMN RollId INT DEFAULT 3;
 GO
 
 CREATE TABLE Doctor
@@ -92,7 +92,7 @@ CREATE TABLE Doctor
 	DoStatus bit,
 	CaId int foreign key references Category(CaId)
 )
-
+ALTER TABLE Doctor ADD RollId INT DEFAULT 2;
 GO
 
 CREATE TABLE Director
@@ -105,6 +105,7 @@ CREATE TABLE Director
 	DiContent ntext,
 	DiStatus bit
 )
+ALTER TABLE Director ADD RollId INT DEFAULT 1;
 
 GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO
 
@@ -142,11 +143,12 @@ CREATE PROC insertPatients
 	@paAddress ntext,
 	@paContent ntext,
 	@paStatus bit,
-	@doId int
+	@doId int,
+	@rollId int
 
 AS
 BEGIN
-	INSERT INTO Patients VALUES (@paAcc,@paPass,@paFullName,@paPhone,@paAge,@paEmail,@paAvatar,@paAddress,@paContent,@paStatus,@doId);
+	INSERT INTO Patients VALUES (@paAcc,@paPass,@paFullName,@paPhone,@paAge,@paEmail,@paAvatar,@paAddress,@paContent,@paStatus,@doId,@rollId);
 END
 
 GO
@@ -163,7 +165,8 @@ CREATE PROC updatePatients
 	@paAddress ntext,
 	@paContent ntext,
 	@paStatus bit,
-	@doId int
+	@doId int,
+	@rollId int
 	
 AS
 BEGIN
@@ -177,7 +180,8 @@ BEGIN
 						PaAddress = @paAddress,
 						PaContent = @paContent,
 						PaStatus = @paStatus,
-						DoId = @doId
+						DoId = @doId,
+						RollId = @rollId
 	WHERE PaId = @paId;
 END
 
@@ -221,6 +225,16 @@ BEGIN
 	SELECT * FROM Patients WHERE PaFullName = @paFullName;	
 END
 
+GO
+
+CREATE PROC checkAccPatients
+	@paAcc varchar(100)
+AS
+BEGIN
+	SELECT PaAcc FROM Patients WHERE PaAcc = @paAcc;
+END
+
+
 GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO
 GO
 
@@ -254,10 +268,11 @@ CREATE PROC insertDoctor
 	@doAddress ntext,
 	@doContent ntext,
 	@doStatus bit,
-	@caId int
+	@caId int,
+	@rollId int
 AS
 BEGIN
-	INSERT INTO Doctor VALUES (@doAcc,@doPass,@doFullName,@doPhone,@doAge,@doEmail,@doAvatar,@doAddress,@doContent,@doStatus,@caId);
+	INSERT INTO Doctor VALUES (@doAcc,@doPass,@doFullName,@doPhone,@doAge,@doEmail,@doAvatar,@doAddress,@doContent,@doStatus,@caId,@rollId);
 END
 
 GO
@@ -274,7 +289,8 @@ CREATE PROC updateDoctor
 	@doAddress ntext,
 	@doContent ntext,
 	@doStatus bit,
-	@caId int
+	@caId int,
+	@rollId int
 AS
 BEGIN
 	UPDATE Doctor SET DoAcc = @doAcc,
@@ -287,7 +303,8 @@ BEGIN
 					  DoAddress = @doAddress,
 					  DoContent = @doContent,
 					  DoStatus = @doStatus,
-					  CaId = @caId
+					  CaId = @caId,
+					  RollId = @rollId
 	WHERE DoId = @doId;
 END
 
@@ -300,6 +317,7 @@ GO
 GO
 
 CREATE PROC getAllDoctor
+	
 AS
 BEGIN
 	SELECT * FROM Doctor;
@@ -322,6 +340,23 @@ CREATE PROC searchDoctorByName
 AS 
 BEGIN
 	SELECT * FROM Doctor WHERE DoFullName = @doFullName;	
+END
+
+GO
+
+CREATE PROC checkAccDoctor
+	@doAcc varchar(100)
+AS
+BEGIN
+	SELECT DoAcc FROM Doctor WHERE DoAcc = @doAcc;
+END
+
+GO
+
+CREATE PROC countAllDoctor
+AS
+BEGIN
+	SELECT COUNT(DISTINCT DoId) FROM Doctor;
 END
 
 GO
@@ -367,7 +402,8 @@ CREATE PROC updateDirector
 	@diFullName nvarchar(100),
 	@diPhone nvarchar(100),
 	@diContent ntext,
-	@diStatus bit
+	@diStatus bit,
+	@rollId int
 AS
 BEGIN
 	UPDATE Director SET
@@ -376,7 +412,8 @@ BEGIN
 	DiFullName = @diFullName,
 	DiPhone = @diPhone,
 	DiContent = @diContent,
-	DiStatus = @diStatus
+	DiStatus = @diStatus,
+	RollId = @rollId
 	WHERE DiId = @diId;
 END
 
@@ -440,7 +477,7 @@ CREATE PROC getDoctorWithCaId
 	@caId int
 AS
 BEGIN
-	SELECT Doctor.DoId , Doctor.DoAcc , Doctor.DoPass , Doctor.DoFullName , Doctor.DoPhone , Doctor.DoAge , Doctor.DoEmail, Doctor.DoAvatar, Doctor.DoAddress, Doctor.DoContent FROM Category INNER JOIN Doctor ON Category.CaId = Doctor.CaId WHERE Doctor.CaId = @caId;
+	SELECT Doctor.DoId , Doctor.DoAcc , Doctor.DoPass , Doctor.DoFullName , Doctor.DoPhone , Doctor.DoAge , Doctor.DoEmail, Doctor.DoAvatar, Doctor.DoAddress, Doctor.DoContent, Category.CaName FROM Category INNER JOIN Doctor ON Category.CaId = Doctor.CaId WHERE Doctor.CaId = 1;
 END
 
 GO

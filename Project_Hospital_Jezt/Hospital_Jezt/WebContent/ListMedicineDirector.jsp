@@ -54,7 +54,7 @@
                       </div>
                     </th>
                     <td>
-                      <img src="${med.meImage}" height="100" with="150"/>
+                      <img src="../Hospital_Jezt/Common/Images/MedicineImages/${med.meImage}" height="100" with="150"/>
                     </td>
                     <td>
                       <span class="badge badge-dot mr-4">

@@ -32,8 +32,6 @@ public class LoginController extends HttpServlet {
 		doGet(request, response);
 		request.setCharacterEncoding("UTF-8");
 		
-		String action = request.getParameter("action");
-		
 		String diAcc = request.getParameter("user");
 		String diPass = request.getParameter("pass");
 		String doAcc = request.getParameter("user");
@@ -50,20 +48,21 @@ public class LoginController extends HttpServlet {
 		Patients pat = new Patients();
 		PatientsDAO paDAO = new PatientsDAO();
 		
+		
 		pat = paDAO.checkLoginPatients(paAcc, paPass);
 		doc = doDAO.checkLoginDoctor(doAcc, doPass);
 		dir = diDAO.checkLoginDirector(diAcc, diPass);
-		if(pat!=null) {
+		if(pat!=null && pat.getRollId()==3) {
 			HttpSession session = request.getSession();
 			session.setAttribute("pat", pat);
 			request.getRequestDispatcher("Patients.jsp").forward(request, response);
 		}
-		else if(doc!=null) {
+		else if(doc!=null && doc.getRollId()==2) {
 			HttpSession session = request.getSession();
 			session.setAttribute("doc", doc);
 			request.getRequestDispatcher("Doctor.jsp").forward(request, response);
 		}
-		else if(dir!=null) {
+		else if(dir!=null && dir.getRollId()==1) {
 			HttpSession session = request.getSession();
 			session.setAttribute("dir", dir);
 			request.getRequestDispatcher("Director.jsp").forward(request, response);

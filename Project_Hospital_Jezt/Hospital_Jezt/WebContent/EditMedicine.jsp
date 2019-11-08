@@ -91,7 +91,7 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" >Image</label>
-                        <input type="text"  class="form-control form-control-alternative" value="${med.meImage}" name="meImage" />
+                        <input type="file"  class="form-control form-control-alternative" value="${med.meImage}" name="meImage" />
                       </div>
                     </div>
                     <div class="col-lg-6">
