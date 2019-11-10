@@ -40,19 +40,12 @@ public class CategoryController extends HttpServlet {
 		String action = request.getParameter("action");
 		
 		if(action.equals("getAllCategory")) {
-			getAllCategory(caDAO, diDAO, request, response);
-			
+			getAllCategory(caDAO, request, response);
+			request.getRequestDispatcher("Category.jsp").forward(request, response);			
 		} 
 		
 		else if(action.equals("getDoctorWithCaId")) {
-			//GET caId from request
-			int caId = Integer.parseInt(request.getParameter("caId"));
-			List<Doctor> listDoc = new ArrayList<>();
-			//CALL MODELS
-			listDoc = caDAO.getDoctorWithCaId(caId);
-			dir = diDAO.getDirector();
-			request.setAttribute("dir", dir);
-			request.setAttribute("listDoc", listDoc);
+			getDoctorWithCaId(caDAO, request, response);
 			request.getRequestDispatcher("CategoryDetail.jsp").forward(request, response);
 		} 
 		
@@ -61,9 +54,11 @@ public class CategoryController extends HttpServlet {
 			cat.setCaName(request.getParameter("caName"));
 			cat.setCaContent(request.getParameter("caContent"));
 			cat.setCaStatus(Boolean.parseBoolean(request.getParameter("caStatus")));
+			cat.setCaImage(request.getParameter("caImage"));
 			boolean check = caDAO.insertCategory(cat);
 			if(check) {
-				getAllCategory(caDAO, diDAO, request, response);
+				getAllCategory(caDAO, request, response);
+				request.getRequestDispatcher("Category.jsp").forward(request, response);
 			} else {
 				request.setAttribute("createFail", "Create Category fail !");
 				request.getRequestDispatcher("CreateCategory.jsp").forward(request, response);
@@ -74,18 +69,19 @@ public class CategoryController extends HttpServlet {
 			int caId = Integer.parseInt(request.getParameter("caId"));
 			boolean check = caDAO.deleteCategory(caId);
 			if(check) {
-				getAllCategory(caDAO, diDAO, request, response);
+				getAllCategory(caDAO, request, response);
+				request.getRequestDispatcher("Category.jsp").forward(request, response);
 			} else {
 				request.setAttribute("deleteFail", "Delete fail !");
-				getAllCategory(caDAO, diDAO, request, response);
+				getAllCategory(caDAO, request, response);
+				request.getRequestDispatcher("Category.jsp").forward(request, response);
 			}
 		} 
 		
 		else if(action.equals("initEdit")) {
 			int caId = Integer.parseInt(request.getParameter("caId"));
 			cat = caDAO.getCategoryById(caId);
-			dir = diDAO.getDirector();
-			request.setAttribute("dir", dir);
+			
 			request.setAttribute("cat", cat);
 			request.getRequestDispatcher("EditCategory.jsp").forward(request, response);
 		} 
@@ -96,13 +92,33 @@ public class CategoryController extends HttpServlet {
 			cat.setCaName(request.getParameter("caName"));
 			cat.setCaContent(request.getParameter("caContent"));
 			cat.setCaStatus(Boolean.parseBoolean(request.getParameter("caStatus")));
+			cat.setCaImage(request.getParameter("caImage"));
 			boolean check = caDAO.updateCategory(cat);
 			if(check) {
-				getAllCategory(caDAO, diDAO, request, response);
+				getAllCategory(caDAO, request, response);
+				request.getRequestDispatcher("Category.jsp").forward(request, response);
 			} else {
 				request.setAttribute("editFail", "Edit fail !");
-				getAllCategory(caDAO, diDAO, request, response);
+				getAllCategory(caDAO, request, response);
+				request.getRequestDispatcher("Category.jsp").forward(request, response);
 			}		
+		}
+		
+		else if(action.equals("homeCategory")) {
+			List<Category> listCat = new ArrayList<>();
+			listCat = caDAO.getAllCategory();
+			
+			request.setAttribute("listCat", listCat);
+			request.getRequestDispatcher("HomeCategory.jsp").forward(request, response);
+		}
+		
+		else if(action.equals("homeCategoryDetail")) {
+			
+			int caId = Integer.parseInt(request.getParameter("caId"));
+			cat = caDAO.getCategoryById(caId);
+			getDoctorWithCaId(caDAO, request, response);
+			request.setAttribute("cat", cat);
+			request.getRequestDispatcher("HomeCategoryDetail.jsp").forward(request, response);
 		}
 		
 	}
@@ -113,15 +129,24 @@ public class CategoryController extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	public void getAllCategory(CategoryDAO caDAO, DirectorDAO diDAO,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void getAllCategory(CategoryDAO caDAO,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		List<Category> listCat = new ArrayList<>();
 		listCat = caDAO.getAllCategory();
-		dir = diDAO.getDirector();
-		request.setAttribute("dir", dir);
-		request.setAttribute("listCat", listCat);
-		request.getRequestDispatcher("Category.jsp").forward(request, response);
 		
-		}
+		request.setAttribute("listCat", listCat);
+		
+		
+	}
+	
+	protected void getDoctorWithCaId(CategoryDAO caDAO,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		//GET caId from request
+		int caId = Integer.parseInt(request.getParameter("caId"));
+		List<Doctor> listDoc = new ArrayList<>();
+		//CALL MODELS
+		listDoc = caDAO.getDoctorWithCaId(caId);
+		request.setAttribute("listDoc", listDoc);		
+	}
 
 }

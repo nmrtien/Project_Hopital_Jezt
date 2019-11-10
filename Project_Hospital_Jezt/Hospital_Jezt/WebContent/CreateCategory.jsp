@@ -58,7 +58,12 @@
                       </div>
                     </div>
                     
-                    
+                     <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" >Image</label>
+                        <input type="file"  class="form-control form-control-alternative" name="caImage" />
+                      </div>
+                    </div>
                     
                     
                   </div>

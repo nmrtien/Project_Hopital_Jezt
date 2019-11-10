@@ -236,6 +236,13 @@ public class DoctorController extends HttpServlet {
 				getAllDoctor(doDAO, request, response);
 			}
 		}
+		
+		else if(action.equals("listDoctorHome")) {
+			List<Doctor> listDoc = new ArrayList<>();
+			listDoc = doDAO.selectTop8Doctor();
+			request.setAttribute("listDoc", listDoc);
+			request.getRequestDispatcher("HomeDoctor.jsp").forward(request, response);
+		}
 	}
 
 	

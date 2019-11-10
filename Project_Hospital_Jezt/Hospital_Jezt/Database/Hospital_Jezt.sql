@@ -13,7 +13,7 @@ CREATE TABLE Category
 	CaContent ntext,
 	CaStatus bit	
 )
-
+ALTER TABLE Category ADD CaImage nvarchar(100)
 GO
 
 CREATE TABLE Medicine
@@ -75,6 +75,7 @@ CREATE TABLE Patients
 	DoId int foreign key references Doctor(DoId)
 )
 ALTER TABLE Patients DROP cOLUMN RollId INT DEFAULT 3;
+
 GO
 
 CREATE TABLE Doctor
@@ -360,6 +361,25 @@ BEGIN
 END
 
 GO
+
+CREATE PROC selectTop8Doctor
+AS
+BEGIN
+	SELECT TOP(8) * FROM Doctor;
+END
+EXEC selectTop8Doctor
+
+GO
+CREATE PROC getCaNameWithDoId
+	@caId int
+AS
+BEGIN
+	SELECT Doctor.DoId , Doctor.DoAcc , Doctor.DoPass , Doctor.DoFullName , Doctor.DoPhone , Doctor.DoAge , Doctor.DoEmail, Doctor.DoAvatar, Doctor.DoAddress, Doctor.DoContent, Category.CaName, Category.CaContent FROM Category INNER JOIN Doctor ON Category.CaId = Doctor.CaId WHERE Category.CaId = @caId;
+END
+
+GO
+EXEC getDoctorWithCaId @caId = 3;
+GO
 GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO
 GO
 GO
@@ -433,12 +453,14 @@ CREATE PROC updateCategory
 	@caId int,
 	@caName nvarchar(100),
 	@caContent ntext,
-	@caStatus bit
+	@caStatus bit,
+	@caImage nvarchar(100)
 AS
 BEGIN
 	UPDATE Category SET CaName = @caName,
 						CaContent = @caContent,
-						@caStatus = @caStatus
+						CaStatus = @caStatus,
+						CaImage = @caImage
 	WHERE CaId = @caId;
 END
 
@@ -447,10 +469,11 @@ GO
 CREATE PROC insertCategory
 	@caName nvarchar(100),
 	@caContent ntext,
-	@caStatus bit
+	@caStatus bit,
+	@caImage nvarchar(100)
 AS
 BEGIN
-	INSERT INTO Category VALUES (@caName,@caContent,@caStatus);
+	INSERT INTO Category VALUES (@caName,@caContent,@caStatus,@caImage);
 END
 
 GO
@@ -477,11 +500,11 @@ CREATE PROC getDoctorWithCaId
 	@caId int
 AS
 BEGIN
-	SELECT Doctor.DoId , Doctor.DoAcc , Doctor.DoPass , Doctor.DoFullName , Doctor.DoPhone , Doctor.DoAge , Doctor.DoEmail, Doctor.DoAvatar, Doctor.DoAddress, Doctor.DoContent, Category.CaName FROM Category INNER JOIN Doctor ON Category.CaId = Doctor.CaId WHERE Doctor.CaId = 1;
+	SELECT Doctor.DoId , Doctor.DoAcc , Doctor.DoPass , Doctor.DoFullName , Doctor.DoPhone , Doctor.DoAge , Doctor.DoEmail, Doctor.DoAvatar, Doctor.DoAddress, Doctor.DoContent, Category.CaName, Category.CaContent FROM Category INNER JOIN Doctor ON Category.CaId = Doctor.CaId WHERE Category.CaId = @caId;
 END
 
 GO
-EXEC getDoctorWithCaId @caId = 1;
+EXEC getDoctorWithCaId @caId = 3;
 GO
 GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO GO
 

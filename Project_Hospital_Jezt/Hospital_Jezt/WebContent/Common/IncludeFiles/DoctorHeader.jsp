@@ -53,7 +53,7 @@
             </div>
            
             <div class="dropdown-divider"></div>
-            <a href="Login.jsp" class="dropdown-item">
+            <a href="Logout.jsp" class="dropdown-item">
               <i class="ni ni-user-run"></i>
               <span>Logout</span>
             </a>
@@ -145,7 +145,7 @@
               </div>
               
               <div class="dropdown-divider"></div>
-              <a href="Login.jsp" class="dropdown-item">
+              <a href="Logout.jsp" class="dropdown-item">
                 <i class="ni ni-user-run"></i>
                 <span>Logout</span>
               </a>

@@ -288,4 +288,42 @@ public class DoctorDAO implements IDoctor{
 		return countAllDoctor;
 	}
 
+	@Override
+	public List<Doctor> selectTop8Doctor() {
+		Connection conn = null;
+		CallableStatement callst = null;
+		List<Doctor> listDoc = null;
+		try {
+			conn = ConnectionDB.openConection();
+			callst = conn.prepareCall("{call selectTop8Doctor()}");
+			
+			ResultSet rs = callst.executeQuery();
+			listDoc = new ArrayList<>();
+			while(rs.next()) {
+				Doctor doc = new Doctor();
+				
+				doc.setDoId(rs.getInt("DoId"));
+				doc.setDoAcc(rs.getString("DoAcc"));
+				doc.setDoPass(rs.getString("DoPass"));
+				doc.setDoFullName(rs.getString("DoFullName"));
+				doc.setDoPhone(rs.getString("DoPhone"));
+				doc.setDoAge(rs.getInt("DoAge"));
+				doc.setDoEmail(rs.getString("DoEmail"));
+				doc.setDoAvatar(rs.getString("DoAvatar"));
+				doc.setDoAddress(rs.getString("DoAddress"));
+				doc.setDoContent(rs.getString("DoContent"));								
+				doc.setCaId(rs.getInt("CaId"));
+				doc.setRollId(rs.getInt("RollId"));
+				listDoc.add(doc);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}finally {
+			ConnectionDB.closeAll(conn, callst);
+		}
+		return listDoc;
+	}
+	
+
 }

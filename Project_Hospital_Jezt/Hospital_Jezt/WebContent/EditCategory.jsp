@@ -38,13 +38,13 @@
                   <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" for="input-username">Department</label>
+                        <label class="form-control-label" for="input-username">Department: </label>
                         <input type="text" class="form-control form-control-alternative" value="${cat.caName}" name="caName" />
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" >Content</label>
+                        <label class="form-control-label" >Content: </label>
                         <input type="text"  class="form-control form-control-alternative" value="${cat.caContent}" name="caContent" />
                       </div>
                     </div>
@@ -52,24 +52,33 @@
                   <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" >Status</label>
+                        <label class="form-control-label" >Status: </label>
                         <input type="text"  class="form-control form-control-alternative" value="${cat.caStatus}" name="caStatus" />
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" >ID</label>
+                        <label class="form-control-label" >ID: </label>
                         <input type="text"  class="form-control form-control-alternative" value="${cat.caId}" name="caId" readonly="true">
                       </div>
                     </div>
                     
                   </div>
                 </div>
-                <hr class="my-4" />
-                <!-- Address -->
-                
-                <hr class="my-4" />
-                <!-- Description -->
+                <div class="row">
+                	<div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" >Change Image: ${avatarFail}</label>
+                        <input type="file"  class="form-control form-control-alternative" placeholder="" value="${cat.caImage}" name="caImage" />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" >Old Image</label>
+                        <img src="../Hospital_Jezt/Common/Images/CategoryImages/${cat.caImage}" height="100" with="150"/>
+                      </div>
+                    </div>
+                </div>
                
               </form>
             </div>

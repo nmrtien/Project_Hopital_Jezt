@@ -29,6 +29,7 @@ public class CategoryDAO implements ICategory{
 				cat.setCaName(rs.getString("CaName"));
 				cat.setCaContent(rs.getString("CaContent"));
 				cat.setCaStatus(rs.getBoolean("CaStatus"));
+				cat.setCaImage(rs.getString("CaImage"));
 				listCat.add(cat);
 			}
 		} catch (Exception e) {
@@ -44,10 +45,11 @@ public class CategoryDAO implements ICategory{
 		boolean check = true;
 		try {
 			conn = ConnectionDB.openConection();
-			callst = conn.prepareCall("{call insertCategory(?,?,?)}");
+			callst = conn.prepareCall("{call insertCategory(?,?,?,?)}");
 			callst.setString(1, cat.getCaName());
 			callst.setString(2,cat.getCaContent());
 			callst.setBoolean(3, cat.isCaStatus());
+			callst.setString(4, cat.getCaImage());
 			callst.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -63,11 +65,12 @@ public class CategoryDAO implements ICategory{
 		boolean check = true;
 		try {
 			conn = ConnectionDB.openConection();
-			callst = conn.prepareCall("{call updateCategory(?,?,?,?)}");
+			callst = conn.prepareCall("{call updateCategory(?,?,?,?,?)}");
 			callst.setInt(1, cat.getCaId());
 			callst.setString(2, cat.getCaName());
 			callst.setString(3,cat.getCaContent());
 			callst.setBoolean(4, cat.isCaStatus());
+			callst.setString(5, cat.getCaImage());
 			callst.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -92,6 +95,7 @@ public class CategoryDAO implements ICategory{
 				cat.setCaName(rs.getString("CaName"));
 				cat.setCaContent(rs.getString("CaContent"));
 				cat.setCaStatus(rs.getBoolean("CaStatus"));
+				cat.setCaImage(rs.getString("CaImage"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

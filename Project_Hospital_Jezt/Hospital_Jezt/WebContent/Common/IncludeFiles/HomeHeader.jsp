@@ -33,13 +33,33 @@
 
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
-          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-          <li class="nav-item"><a href="departments.html" class="nav-link">Departments</a></li>
-          <li class="nav-item"><a href="doctor.html" class="nav-link">Doctors</a></li>
-          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-          <li class="nav-item cta"><a href="Login.jsp" class="nav-link"  data-target="#modalAppointment"><span>LogIn</span></a></li>
+          <li class="nav-item active"><a href="Home.jsp" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="MedicineController?action=getAllMedicineHome" class="nav-link">Medicine</a></li>
+          <li class="nav-item"><a href="DoctorController?action=listDoctorHome" class="nav-link">Doctors</a></li>
+          <li class="nav-item"><a href="CategoryController?action=homeCategory" class="nav-link">Departments</a></li>
+          <li class="nav-item dropdown" class="nav-item cta"><a class="nav-link"  data-target="#modalAppointment">
+          <span>Account</span>
+         
+          <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+          	<a href="PatientsController?action=getDetailPatient&paId=${pat.paId}" class="dropdown-item">
+              <i class="ni ni-user-run"></i>
+              <span>${pat.paFullName}</span>
+            </a>
+             <div class="dropdown-divider"></div>
+            <a href="Login.jsp" class="dropdown-item">
+              <i class="ni ni-user-run"></i>
+              <span>Login</span>
+            </a>
+           
+            <div class="dropdown-divider"></div>
+            <a href="Logout.jsp" class="dropdown-item">
+              <i class="ni ni-user-run"></i>
+              <span>Logout</span>
+            </a>
+          </div>
+        </li>
+          
+          
         </ul>
       </div>
     </div>

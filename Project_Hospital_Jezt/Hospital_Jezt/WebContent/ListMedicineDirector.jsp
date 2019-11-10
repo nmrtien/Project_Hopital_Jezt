@@ -29,6 +29,11 @@
 			  <h3>${editMedicineFail}</h3>
 			  </br>
 			  <h3>${deleteMedicineFail}</h3>
+			  <form action="MedicineController" >
+              	<input type="text" placeholder="Type Name" name="meName" style="border:1px solid #92abe7"/>
+              	<input type="submit" value="Find" name="action" style="border-radius:10px;background-color:#92abe7" />
+              </form>
+              </br>
             </div>
             <div class="table-responsive">
               <table class="table align-items-center table-flush">

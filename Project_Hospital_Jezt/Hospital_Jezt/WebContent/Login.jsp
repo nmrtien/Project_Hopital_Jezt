@@ -104,7 +104,8 @@
                 </a>
               	</br> 
               	
-              	 <small>${message}</small>                             
+              	 <small>${message}</small>
+              	 <small>${addCartFail}</small>                            
               </div>
               </br>
               <form role="form" method="post" action="LoginController">

@@ -90,20 +90,21 @@
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" >Image</label>
-                        <input type="file"  class="form-control form-control-alternative" value="${med.meImage}" name="meImage" />
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group">
                         <label class="form-control-label" >Status</label>
                         <input type="text"  class="form-control form-control-alternative" value="${med.meStatus}" name="meStatus" />
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" >.</label>
-                        <input type="text"  class="form-control form-control-alternative"  />
+                        <label class="form-control-label" > Change Image</label>
+                        <input type="file"  class="form-control form-control-alternative" value="${med.meImage}" name="meImage" />
+                      </div>
+                    </div>
+                    
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" >Old Image</label>
+                        <img src="../Hospital_Jezt/Common/Images/MedicineImages/${med.meImage}" height="100" with="150"/>
                       </div>
                     </div>
                     

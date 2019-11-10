@@ -84,7 +84,7 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" >Image</label>
-                        <input type="text"  class="form-control form-control-alternative" name="meImage" />
+                        <input type="file"  class="form-control form-control-alternative" name="meImage" />
                       </div>
                     </div>
                     <div class="col-lg-6">
@@ -96,7 +96,7 @@
                      <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" >.</label>
-                        <input type="text"  class="form-control form-control-alternative"  />
+                        <input type="text"  class="form-control form-control-alternative" readonly="true" />
                       </div>
                     </div>
                    

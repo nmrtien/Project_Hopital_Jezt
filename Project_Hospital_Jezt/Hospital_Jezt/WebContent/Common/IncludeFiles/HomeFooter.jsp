@@ -11,28 +11,15 @@
               
             </div>
           </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4 ml-md-5">
-              <h2 class="ftco-heading-2">Information</h2>
-              <ul class="list-unstyled">
-              	<li><a href="#" class="py-2 d-block">Appointments</a></li>
-                <li><a href="#" class="py-2 d-block">Our Specialties</a></li>
-                <li><a href="#" class="py-2 d-block">Why Choose us</a></li>
-                <li><a href="#" class="py-2 d-block">Our Services</a></li>
-                <li><a href="#" class="py-2 d-block">health Tips</a></li>
-              </ul>
-            </div>
-          </div>
+          
           <div class="col-md">
              <div class="ftco-footer-widget mb-4">
               <h2 class="ftco-heading-2">Site Links</h2>
               <ul class="list-unstyled">
-                <li><a href="#" class="py-2 d-block">Home</a></li>
-                <li><a href="#" class="py-2 d-block">About</a></li>
-                <li><a href="#" class="py-2 d-block">Departments</a></li>
-                <li><a href="#" class="py-2 d-block">Doctors</a></li>
-                <li><a href="#" class="py-2 d-block">Blog</a></li>
-                <li><a href="#" class="py-2 d-block">Contact</a></li>
+                <li class="nav-item active"><a href="Home.jsp" class="nav-link">Home</a></li>
+          		<li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+          		<li class="nav-item"><a href="CategoryController?action=homeCategory" class="nav-link">Departments</a></li>
+          		<li class="nav-item"><a href="DoctorController?action=listDoctorHome" class="nav-link">Doctors</a></li>
               </ul>
             </div>
           </div>
@@ -41,9 +28,9 @@
             	<h2 class="ftco-heading-2">Have a Questions?</h2>
             	<div class="block-23 mb-3">
 	              <ul>
-	                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
+	                <li><span class="icon icon-map-marker"></span><span class="text">236 Hoang Quoc Viet St. Cau Giay, Ha Noi, Viet Nam</span></li>
+	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">09 6556 3883</span></a></li>
+	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">jezt.nguyen@gmail.com</span></a></li>
 	              </ul>
 	            </div>
             </div>

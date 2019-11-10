@@ -31,6 +31,7 @@ public class LoginController extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 		request.setCharacterEncoding("UTF-8");
+		String action = request.getParameter("action");
 		
 		String diAcc = request.getParameter("user");
 		String diPass = request.getParameter("pass");
@@ -52,21 +53,25 @@ public class LoginController extends HttpServlet {
 		pat = paDAO.checkLoginPatients(paAcc, paPass);
 		doc = doDAO.checkLoginDoctor(doAcc, doPass);
 		dir = diDAO.checkLoginDirector(diAcc, diPass);
+		
 		if(pat!=null && pat.getRollId()==3) {
 			HttpSession session = request.getSession();
 			session.setAttribute("pat", pat);
-			request.getRequestDispatcher("Patients.jsp").forward(request, response);
+			request.getRequestDispatcher("Home.jsp").forward(request, response);
 		}
+		
 		else if(doc!=null && doc.getRollId()==2) {
 			HttpSession session = request.getSession();
 			session.setAttribute("doc", doc);
 			request.getRequestDispatcher("Doctor.jsp").forward(request, response);
 		}
+		
 		else if(dir!=null && dir.getRollId()==1) {
 			HttpSession session = request.getSession();
 			session.setAttribute("dir", dir);
 			request.getRequestDispatcher("Director.jsp").forward(request, response);
 		}
+		
 		else if(pat==null && doc==null && dir==null) {
 			request.setAttribute("message", "Account not valid !");
 			request.getRequestDispatcher("Login.jsp").forward(request, response);

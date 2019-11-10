@@ -25,4 +25,6 @@ public interface IDoctor {
 	
 	public int countAllDoctor();
 	
+	public List<Doctor> selectTop8Doctor();
+	
 }

@@ -31,7 +31,7 @@
                   <tr>
                     <th>ID</th>
 					<th>NAME</th>
-					<th>CONTENT</th>
+					<th>Image</th>
 					<th>STATUS</th>
                     <th scope="col"></th>
                   </tr>
@@ -51,9 +51,9 @@
                       ${cat.caName}
                     </td>
                     <td>
-                      <span class="badge badge-dot mr-4">
-                        <i class="bg-warning"></i> ${cat.caContent}
-                      </span>
+                      
+                        <img src="../Hospital_Jezt/Common/Images/CategoryImages/${cat.caImage}" height="100" with="150"/>
+                      
                     </td>
                     <td>
                       ${cat.caStatus}

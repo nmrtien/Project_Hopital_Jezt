@@ -90,7 +90,7 @@
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" >Avatar</label>
+                        <label class="form-control-label" >Old Avatar</label>
                         <img src="../Hospital_Jezt/Common/Images/DoctorImages/${doc.doAvatar}" height="100" with="150"/>
                       </div>
                     </div>

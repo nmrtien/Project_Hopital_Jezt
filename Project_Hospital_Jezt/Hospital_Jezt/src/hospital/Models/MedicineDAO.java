@@ -12,7 +12,7 @@ import hospital.Entities.Medicine;
 import hospital.Interfaces.IMedicine;
 
 public class MedicineDAO implements IMedicine{
-
+	
 	@Override
 	public List<Medicine> getAllMedicine() {
 		Connection conn = null;

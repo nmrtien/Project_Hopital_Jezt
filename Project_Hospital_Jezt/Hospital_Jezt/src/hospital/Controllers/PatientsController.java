@@ -61,6 +61,13 @@ public class PatientsController extends HttpServlet {
 			request.getRequestDispatcher("ListPatientsDoctor.jsp").forward(request, response);
 		}
 		
+		else if(action.equals("getDetailPatients")) {
+			int paId = Integer.parseInt(request.getParameter("paId"));
+			pat = paDAO.getPatientsById(paId);
+			request.setAttribute("pat", pat);
+			request.getRequestDispatcher("Patients.jsp").forward(request, response);
+		}
+		
 		else if(action.equals("Search")) {
 			
 			String paFullName = request.getParameter("paFullName");

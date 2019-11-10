@@ -6,17 +6,19 @@ public class Category {
 	private String caName;
 	private String caContent;
 	private boolean caStatus;
+	private String caImage;
 	
 	public Category() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Category(int caId, String caName, String caContent, boolean caStatus) {
+	public Category(int caId, String caName, String caContent, boolean caStatus, String caImage) {
 		
 		this.caId = caId;
 		this.caName = caName;
 		this.caContent = caContent;
 		this.caStatus = caStatus;
+		this.caImage = caImage;
 	}
 
 	public int getCaId() {
@@ -51,6 +53,12 @@ public class Category {
 		this.caStatus = caStatus;
 	}
 	
+	public String getCaImage() {
+		return caImage;
+	}
 	
+	public void setCaImage(String caImage) {
+		this.caImage = caImage;
+	}
 	
 }

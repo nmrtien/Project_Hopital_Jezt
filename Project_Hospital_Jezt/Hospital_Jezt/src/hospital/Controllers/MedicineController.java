@@ -56,7 +56,13 @@ public class MedicineController extends HttpServlet {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		
 		if(action.equals("getAllMedicine")) {
-			getAllMedicine(diDAO, meDAO, request, response);
+			getAllMedicine(meDAO, request, response);
+			request.getRequestDispatcher("ListMedicineDirector.jsp").forward(request, response);
+		}
+		
+		else if(action.equals("getAllMedicineHome")) {
+			getAllMedicine(meDAO, request, response);
+			request.getRequestDispatcher("HomeMedicine.jsp").forward(request, response);
 		}
 		
 		else if(action.equals("detail")) {
@@ -114,9 +120,11 @@ public class MedicineController extends HttpServlet {
 			med.setCaId(Integer.parseInt(request.getParameter("caId")));
 			boolean check = meDAO.updateMedicine(med);
 			if(check) {
-				getAllMedicine(diDAO, meDAO, request, response);
+				getAllMedicine(meDAO, request, response);
+				request.getRequestDispatcher("ListMedicineDirector.jsp").forward(request, response);
 			} else {
-				getAllMedicine(diDAO, meDAO, request, response);
+				getAllMedicine(meDAO, request, response);
+				request.getRequestDispatcher("ListMedicineDirector.jsp").forward(request, response);
 			}
 		}
 		
@@ -153,9 +161,11 @@ public class MedicineController extends HttpServlet {
 			med.setCaId(Integer.parseInt(request.getParameter("caId")));
 			boolean check = meDAO.insertMedicine(med);
 			if(check) {
-				getAllMedicine(diDAO, meDAO, request, response);
+				getAllMedicine(meDAO, request, response);
+				request.getRequestDispatcher("ListMedicineDirector.jsp").forward(request, response);
 			} else {
-				getAllMedicine(diDAO, meDAO, request, response);
+				getAllMedicine(meDAO, request, response);
+				request.getRequestDispatcher("ListMedicineDirector.jsp").forward(request, response);
 			}
 		}
 		
@@ -163,19 +173,27 @@ public class MedicineController extends HttpServlet {
 			int meId = Integer.parseInt(request.getParameter("meId"));
 			boolean check = meDAO.deleteMedicine(meId);
 			if(check) {
-				getAllMedicine(diDAO, meDAO, request, response);
+				getAllMedicine(meDAO, request, response);
+				request.getRequestDispatcher("ListMedicineDirector.jsp").forward(request, response);
 			}else {
-				getAllMedicine(diDAO, meDAO, request, response);
+				getAllMedicine(meDAO, request, response);
+				request.getRequestDispatcher("ListMedicineDirector.jsp").forward(request, response);
 			}
 		}
 		
 		else if(action.equals("Search")) {
-			String meName = request.getParameter("meName");
-			List<Medicine> listMed = new ArrayList<>();
-			listMed = meDAO.searchMedicineByName(meName);
-			
-			request.setAttribute("listMed", listMed);
+			searchMedicine(meDAO, request, response);
 			request.getRequestDispatcher("ListMedicineDoctor.jsp").forward(request, response);
+		}
+		
+		else if(action.equals("Find")) {
+			searchMedicine(meDAO, request, response);
+			request.getRequestDispatcher("ListMedicineDirector.jsp").forward(request, response);
+		}
+		
+		else if(action.equals("search")) {
+			searchMedicine(meDAO, request, response);
+			request.getRequestDispatcher("HomeMedicine.jsp").forward(request, response);
 		}
 		
 		else if(action.equals("getMedicineWithCaId")) {
@@ -188,6 +206,11 @@ public class MedicineController extends HttpServlet {
 			request.getRequestDispatcher("ListMedicineDoctor.jsp").forward(request, response);
 		}
 		
+		else if(action.equals("addToCart")) {
+			
+			
+		}
+		
 	}
 
 	
@@ -196,16 +219,20 @@ public class MedicineController extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	protected void getAllMedicine(DirectorDAO diDAO ,MedicineDAO meDAO ,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void getAllMedicine(MedicineDAO meDAO ,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		
-		dir = diDAO.getDirector();
 		List<Medicine> listMed = new ArrayList<>();
 		listMed = meDAO.getAllMedicine();
+		request.setAttribute("listMed", listMed);		
+	}
+	
+	protected void searchMedicine(MedicineDAO meDAO ,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		
-		request.setAttribute("dir", dir);
-		request.setAttribute("listMed", listMed);
-		request.getRequestDispatcher("ListMedicineDirector.jsp").forward(request, response);
-		
+		String meName = request.getParameter("meName");
+		List<Medicine> listMed = new ArrayList<>();
+		listMed = meDAO.searchMedicineByName(meName);
+	
+		request.setAttribute("listMed", listMed);		
 	}
 
 }
