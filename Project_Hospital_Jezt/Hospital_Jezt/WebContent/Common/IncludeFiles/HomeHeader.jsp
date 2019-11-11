@@ -1,6 +1,6 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
+    <link href="../Hospital_Jezt/Common/Images/PatientsImages/${pat.paAvatar}" rel="icon" type="image/png">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
 
     <link rel="stylesheet" href="DesignHome/css/open-iconic-bootstrap.min.css">
@@ -40,19 +40,19 @@
           <li class="nav-item dropdown" class="nav-item cta"><a class="nav-link"  data-target="#modalAppointment">
           <span>Account</span>
          
-          <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-          	<a href="PatientsController?action=getDetailPatient&paId=${pat.paId}" class="dropdown-item">
+          <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right" id="checkView">
+          	<a href="PatientsController?action=getDetailPatients&doId=${pat.doId}" class="dropdown-item" id="value">
               <i class="ni ni-user-run"></i>
               <span>${pat.paFullName}</span>
             </a>
              <div class="dropdown-divider"></div>
-            <a href="Login.jsp" class="dropdown-item">
+            <a href="Login.jsp" class="dropdown-item" id="login">
               <i class="ni ni-user-run"></i>
               <span>Login</span>
             </a>
            
             <div class="dropdown-divider"></div>
-            <a href="Logout.jsp" class="dropdown-item">
+            <a href="Logout.jsp" class="dropdown-item" id="logout">
               <i class="ni ni-user-run"></i>
               <span>Logout</span>
             </a>

@@ -55,9 +55,12 @@ public class LoginController extends HttpServlet {
 		dir = diDAO.checkLoginDirector(diAcc, diPass);
 		
 		if(pat!=null && pat.getRollId()==3) {
+			int doId = pat.getDoId();
 			HttpSession session = request.getSession();
+			doc = doDAO.getDoctorById(doId);
 			session.setAttribute("pat", pat);
-			request.getRequestDispatcher("Home.jsp").forward(request, response);
+			request.setAttribute("doc", doc);
+			request.getRequestDispatcher("Patients.jsp").forward(request, response);
 		}
 		
 		else if(doc!=null && doc.getRollId()==2) {

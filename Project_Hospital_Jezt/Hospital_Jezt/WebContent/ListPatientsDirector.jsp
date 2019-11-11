@@ -19,7 +19,7 @@
               
               <form action="PatientsController" style="margin-top:20px">
               	<input type="text" placeholder="Type Name" name="paFullName" style="border:1px solid #92abe7"/>
-              	<input type="submit" value="Search" name="action" style="border-radius:10px;background-color:#92abe7" />
+              	<input type="submit" value="Search" name="action" style="border-radius:40%;background-color:#92abe7;color:white" />
               </form>            
 			 
             </div>

@@ -22,12 +22,20 @@
       </div>
     </div>
     
-    <section class="ftco-section">
+    
+    
+    <section class="ftco-section" style="background-color:#eaebf3">
     	<div class="container">
-    	<form action="MedicineController" style="margin-bottom:40px">
+    	<div class="row justify-content-start mb-5 pb-3 mt-5">
+		<div class="col-md-12 heading-section ftco-animate">
+		    <h2 class="mb-4">Our Medicine</h2>
+		</div>
+			<form action="MedicineController" style="margin-left:20px">
               	<input type="text" placeholder="Type Name Medicine ..." name="meName" style="border:1px solid #92abe7;width:200px" />
               	<input type="submit" value="search" name="action" style="border-radius:40%;background-color:#92abe7;color:white" />
               </form>
+	  </div>
+    	
     		<div class="row d-flex">
     		
     		
@@ -48,7 +56,7 @@
     							<li><span class="ion-ios-checkmark"></span>Price: ${med.mePrice}$</li>
     						</ul>
     						<hr>
-    						<h5><a href="MedicineController?action=addToCart">Add To Cart</a></h5>
+    						<h5><a href="CartController?action=addToCart&meId=${med.meId}">Add To Cart</a></h5>
     					</div>
     					
     				</div>

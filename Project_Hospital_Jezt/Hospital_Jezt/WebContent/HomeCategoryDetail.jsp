@@ -22,8 +22,15 @@
       </div>
     </div>
     
-    <section class="ftco-section ftco-degree-bg">
+    
+    
+    <section class="ftco-section ftco-degree-bg" style="background-color:#eaebf3">
       <div class="container">
+      <div class="row justify-content-start mb-5 pb-3 mt-5">
+		<div class="col-md-12 heading-section ftco-animate">
+		    <h2 class="mb-4">Our Department</h2>
+		</div>
+	  </div>
         <div class="row">
           <div class="col-md-8 ftco-animate">
             <p>
@@ -74,6 +81,8 @@
         </div>
       </div>
     </section> <!-- .section -->
+    
+    
     
     <%@ include file="Common/IncludeFiles/HomeFooter.jsp" %>
 	

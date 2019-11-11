@@ -113,7 +113,12 @@
                         <input type="text"  class="form-control form-control-alternative"  value="${pat.doId}" name="doId" readonly="true" />
                       </div>
                     </div>
-					
+					<div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" >Roll ID</label>
+                        <input type="text"  class="form-control form-control-alternative"  value="${pat.rollId}" name="rollId" readonly="true" />
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <hr class="my-4" />

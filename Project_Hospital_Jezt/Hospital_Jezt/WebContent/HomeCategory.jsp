@@ -22,8 +22,13 @@
       </div>
     </div>
     
-    <section class="ftco-section">
+    <section class="ftco-section" style="background-color:#eaebf3">
     	<div class="container">
+    	<div class="row justify-content-start mb-5 pb-3 mt-5">
+		<div class="col-md-12 heading-section ftco-animate">
+		    <h2 class="mb-4">Our Departments</h2>
+		</div>
+	  </div>
     		<div class="row d-flex">
     		
     		<c:forEach var="cat" items="${listCat}">
@@ -49,6 +54,7 @@
     		</div>
     	</div>
     </section>
+    
 
 	<%@ include file="Common/IncludeFiles/HomeFooter.jsp" %>
 
