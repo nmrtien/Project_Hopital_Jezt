@@ -34,6 +34,8 @@ public class CategoryDAO implements ICategory{
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			ConnectionDB.closeAll(conn, callst);
 		}
 		return listCat;
 	}
@@ -54,6 +56,8 @@ public class CategoryDAO implements ICategory{
 		} catch (Exception e) {
 			e.printStackTrace();
 			check = false;
+		}finally {
+			ConnectionDB.closeAll(conn, callst);
 		}
 		return check;
 	}
@@ -75,6 +79,8 @@ public class CategoryDAO implements ICategory{
 		} catch (Exception e) {
 			e.printStackTrace();
 			check = false;
+		}finally {
+			ConnectionDB.closeAll(conn, callst);
 		}
 		return check;
 	}
@@ -99,6 +105,8 @@ public class CategoryDAO implements ICategory{
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			ConnectionDB.closeAll(conn, callst);
 		}
 		return cat;
 	}
@@ -133,6 +141,8 @@ public class CategoryDAO implements ICategory{
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			ConnectionDB.closeAll(conn, callst);
 		}
 		return listDoc;
 	}
@@ -150,6 +160,8 @@ public class CategoryDAO implements ICategory{
 		} catch (Exception e) {
 			e.printStackTrace();
 			check = false;
+		}finally {
+			ConnectionDB.closeAll(conn, callst);
 		}
 		return check;
 	}

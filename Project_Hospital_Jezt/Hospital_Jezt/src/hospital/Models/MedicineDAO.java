@@ -40,6 +40,8 @@ public class MedicineDAO implements IMedicine{
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			ConnectionDB.closeAll(conn, callst);
 		}
 		return listMed;
 	}
@@ -71,6 +73,8 @@ public class MedicineDAO implements IMedicine{
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			ConnectionDB.closeAll(conn, callst);
 		}
 		return med;
 	}
@@ -97,6 +101,8 @@ public class MedicineDAO implements IMedicine{
 		} catch (Exception e) {
 			e.printStackTrace();
 			check = false;
+		}finally {
+			ConnectionDB.closeAll(conn, callst);
 		}
 		return check;
 	}
@@ -124,6 +130,8 @@ public class MedicineDAO implements IMedicine{
 		} catch (Exception e) {
 			e.printStackTrace();
 			check = false;
+		}finally {
+			ConnectionDB.closeAll(conn, callst);
 		}
 		return check;
 	}
@@ -141,6 +149,8 @@ public class MedicineDAO implements IMedicine{
 		} catch (Exception e) {
 			e.printStackTrace();
 			check = false;
+		}finally {
+			ConnectionDB.closeAll(conn, callst);
 		}
 		return check;
 	}
@@ -173,6 +183,8 @@ public class MedicineDAO implements IMedicine{
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			ConnectionDB.closeAll(conn, callst);
 		}
 		return listMed;
 	}
@@ -205,6 +217,8 @@ public class MedicineDAO implements IMedicine{
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			ConnectionDB.closeAll(conn, callst);
 		}
 		return listMed;
 	}

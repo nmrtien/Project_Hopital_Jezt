@@ -4,26 +4,19 @@ public class Oder {
 	
 	private int odId;
 	private String odName;
-	private String odCode;
-	private float odTotalPrice;
-	private int odQuantity;
-	private boolean odStatus;
-	private int paId;
+	private String odAddress;
+	private String odPhone;
 	
 	public Oder() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Oder(int odId, String odName, String odCode, float odTotalPrice, int odQuantity, boolean odStatus,
-			int paId) {
-		
+	public Oder(int odId, String odName, String odAddress, String odPhone) {
+		super();
 		this.odId = odId;
 		this.odName = odName;
-		this.odCode = odCode;
-		this.odTotalPrice = odTotalPrice;
-		this.odQuantity = odQuantity;
-		this.odStatus = odStatus;
-		this.paId = paId;
+		this.odAddress = odAddress;
+		this.odPhone = odPhone;
 	}
 
 	public int getOdId() {
@@ -42,46 +35,20 @@ public class Oder {
 		this.odName = odName;
 	}
 
-	public String getOdCode() {
-		return odCode;
+	public String getOdAddress() {
+		return odAddress;
 	}
 
-	public void setOdCode(String odCode) {
-		this.odCode = odCode;
+	public void setOdAddress(String odAddress) {
+		this.odAddress = odAddress;
 	}
 
-	public float getOdTotalPrice() {
-		return odTotalPrice;
+	public String getOdPhone() {
+		return odPhone;
 	}
 
-	public void setOdTotalPrice(float odTotalPrice) {
-		this.odTotalPrice = odTotalPrice;
+	public void setOdPhone(String odPhone) {
+		this.odPhone = odPhone;
 	}
 
-	public int getOdQuantity() {
-		return odQuantity;
-	}
-
-	public void setOdQuantity(int odQuantity) {
-		this.odQuantity = odQuantity;
-	}
-
-	public boolean isOdStatus() {
-		return odStatus;
-	}
-
-	public void setOdStatus(boolean odStatus) {
-		this.odStatus = odStatus;
-	}
-
-	public int getPaId() {
-		return paId;
-	}
-
-	public void setPaId(int paId) {
-		this.paId = paId;
-	}
-	
-	
-	
 }

@@ -37,11 +37,8 @@ CREATE TABLE Oder
 (
 	OdId int primary key identity(1,1),
 	OdName nvarchar(100) not null,
-	OdCode varchar(50) not null,
-	OdTotalPrice float,
-	OdQuantity int,
-	OdStatus bit,
-	PaId int foreign key references Patients(PaId)
+	OdAddress nvarchar(50) not null,
+	OdPhone nvarchar(10) not null
 )
 
 GO
@@ -50,11 +47,10 @@ CREATE TABLE OderDetail
 (
 	OddId int primary key identity(1,1),
 	OddMeName nvarchar(100) not null,
-	OddCreated datetime not null,
 	OddMeQuantity int not null,
 	OddMePrice float not null,
-	OdId int foreign key references Oder(OdId),
-	MeId int foreign key references Medicine(MeId)
+	OddAmount float not null,
+	OdId int foreign key references Oder(OdId)
 )
 
 GO
@@ -599,3 +595,74 @@ END
 
 GO
 EXEC getMedicineWithCaId @caId = 2;
+GO
+
+GO GO GO
+
+CREATE PROC getAllOder
+AS
+BEGIN
+	SELECT * FROM Oder;
+END
+
+GO
+
+CREATE PROC getOderId
+AS
+BEGIN
+	SELECT MAX(OdId) FROM Oder;
+END
+
+GO
+
+CREATE PROC searchOderById
+	@odId int
+AS
+BEGIN
+	SELECT * FROM Oder WHERE OdId = @odId;
+END
+EXEC searchOderById @odId = 1;
+
+GO
+
+CREATE PROC deleteOder
+	@odId int
+AS
+BEGIN
+	DELETE FROM Oder WHERE OdId = @odId;
+END
+
+
+CREATE PROC insertOder
+	@odName nvarchar(100),
+	@odAddress nvarchar(50),
+	@odPhone nvarchar(10)
+AS
+BEGIN
+	INSERT INTO Oder VALUES(@odName,@odAddress,@odPhone);
+END
+
+GO
+
+GO GO GO GO
+
+CREATE PROC getOderDetail
+	@odId int 
+AS
+BEGIN
+	SELECT * FROM OderDetail WHERE OdId = @odId;
+END
+EXEC getOderDetail @odId = 1;
+
+GO
+
+CREATE PROC insertOderDetail
+	@oddMeName nvarchar(100),
+	@oddMeQuantity int,
+	@oddMePrice float,
+	@oddAmount float,
+	@odId int
+AS
+BEGIN
+	INSERT INTO OderDetail VALUES(@oddMeName,@oddMeQuantity,@oddMePrice,@oddAmount,@odId);
+END

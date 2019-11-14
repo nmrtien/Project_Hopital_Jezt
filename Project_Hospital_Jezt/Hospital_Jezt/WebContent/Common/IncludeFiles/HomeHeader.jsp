@@ -41,21 +41,45 @@
           <span>Account</span>
          
           <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right" id="checkView">
-          	<a href="PatientsController?action=getDetailPatients&doId=${pat.doId}" class="dropdown-item" id="value">
-              <i class="ni ni-user-run"></i>
-              <span>${pat.paFullName}</span>
+           <%-- <c:set var="t" scope="session" value="${pat.paFullName}"/>
+        	  <c:if test = "${t == ''}">
+        	  	<a href="PatientsController?action=getDetailPatients&doId=${pat.doId}" class="dropdown-item" >
+              	<i class="ni ni-user-run"></i>
+              	<span>${pat.paFullName}</span>
+            	</a>
+            
+            	<div class="dropdown-divider"></div>
+            	<a href="Logout.jsp" class="dropdown-item">
+              	<i class="ni ni-user-run"></i>
+              	<span>Logout</span>
             </a>
-             <div class="dropdown-divider"></div>
-            <a href="Login.jsp" class="dropdown-item" id="login">
-              <i class="ni ni-user-run"></i>
-              <span>Login</span>
+          	  </c:if> --%>
+          	  
+          	  <a href="PatientsController?action=getDetailPatients&doId=${pat.doId}" class="dropdown-item" >
+              	<i class="ni ni-user-run"></i>
+              	<span>${pat.paFullName}</span>
+            	</a>
+            
+            	<div class="dropdown-divider"></div>
+            	<a href="Logout.jsp" class="dropdown-item">
+              	<i class="ni ni-user-run"></i>
+              	<span>Logout</span>
             </a>
-           
+          	
+          	<%-- <c:if test = "${t =! ''}">
+        	  	<div class="dropdown-divider"></div>
+            <a href="Login.jsp" class="dropdown-item">
+              	<i class="ni ni-user-run"></i>
+              	<span>Login</span>
+            	</a>
+          	  </c:if> --%>
+            
             <div class="dropdown-divider"></div>
-            <a href="Logout.jsp" class="dropdown-item" id="logout">
-              <i class="ni ni-user-run"></i>
-              <span>Logout</span>
-            </a>
+            <a href="Login.jsp" class="dropdown-item">
+              	<i class="ni ni-user-run"></i>
+              	<span>Login</span>
+            	</a> 
+           
           </div>
         </li>
           

@@ -19,7 +19,7 @@ input[type=submit] {
 }
 </style>
 <meta charset="UTF-8">
-<title>Cart</title>
+<title>Submit Cart</title>
 
 	<%@ include file="Common/IncludeFiles/HomeHeader.jsp" %>
 	
@@ -29,7 +29,7 @@ input[type=submit] {
         <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
           <div class="col-md-8 ftco-animate text-center">
             <p class="breadcrumbs"><span class="mr-2"></span> <span class="mr-2">Cart</span></p>
-            <h1 class="mb-3 bread">Cart</h1>
+            <h1 class="mb-3 bread">Submit Cart</h1>
           </div>
         </div>
       </div>
@@ -39,7 +39,7 @@ input[type=submit] {
 	<div align="center" style="background-color:#eaebf3">
 	<br>
 	<div>
-	<h2>Your Cart</h2>
+	<h3>You need click submit medicine to buy it</h3>
 	</div>
 	<br>
 		<table style="width:1000px; height:500px">
@@ -60,6 +60,8 @@ input[type=submit] {
 						<td><input type="text" value="${cart.quantity*cart.med.mePrice}" name="oddAmount" readonly="true"></td>
 						<td>
 							<a href="">Delete</a>
+							
+							<input type="submit" value="Submit" name="action">
 						</td>
 					</tr>
 					
@@ -75,23 +77,26 @@ input[type=submit] {
 					</tr>
 					<tr>
 						<td>Name:</td>
-						<td><input type="text" placeholder="Type Your Name here ..." value="${pat.paFullName}" name="odName"></td>
+						<td><input type="text" value="${od.odName}" name="odName" readonly="true"></td>
 					</tr>
 					<tr>
 						<td>Phone:</td>
-						<td><input type="text" placeholder="Type Your Phone here ..." value="${pat.paPhone}" name="odPhone"></td>
+						<td><input type="text" value="${od.odPhone}" name="odPhone" readonly="true"></td>
 					</tr>
 					<tr>
 						<td>Address:</td>
-						<td><input type="text" placeholder="Type Your Address here ..." value="${pat.paAddress}" name="odAddress"></td>
+						<td><input type="text" value="${od.odAddress}" name="odAddress" readonly="true"></td>
+					</tr>
+					<tr>
+						<td>Oder ID</td>
+						<td><input type="text" value="${jezt}" name="odId" readonly="true"></td>
 					</tr>
 			</tbody>
 		</table>
 		<hr>
 		<div>
 		
-		<input type="submit" value="Pay" name="action">
-		<a href="MedicineController?action=getAllMedicineHome">Back</a>
+		<a href="Home.jsp">Back Home</a>
 		</div>
 		<br>
 	</div>

@@ -77,7 +77,8 @@ public class CartController extends HttpServlet {
 			//Add lisrtCart into Session
 			session.setAttribute("listCart", listCart);
 			//add total into session
-			session.setAttribute("total",totalAmount(listCart));
+			session.setAttribute("totalAmount",totalAmount(listCart));
+			session.setAttribute("totalQuantity",totalQuantity(listCart));
 			request.getRequestDispatcher("ShoppingCart.jsp").forward(request, response);
 		}
 		
@@ -90,11 +91,19 @@ public class CartController extends HttpServlet {
 	}
 	
 	protected float totalAmount(List<Cart> listCart) {
-		float total = 0;
+		float totalAmount = 0;
 		for (Cart cart : listCart) {
-			total += cart.getQuantity()*cart.getMed().getMePrice();
+			totalAmount += cart.getQuantity()*cart.getMed().getMePrice();
 		}
-		return total;
+		return totalAmount;
+	}
+	
+	protected int totalQuantity(List<Cart> listCart) {
+		int totalQuantity = 0;
+		for (Cart cart : listCart) {
+			totalQuantity += cart.getQuantity();
+		}
+		return totalQuantity;
 	}
 
 }

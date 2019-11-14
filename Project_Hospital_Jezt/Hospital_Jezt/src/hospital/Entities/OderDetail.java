@@ -1,31 +1,28 @@
 package hospital.Entities;
 
-import java.util.Date;
+
 
 public class OderDetail {
 	
 	private int oddId;
 	private String oddMeName;
-	private Date oddCreated;
 	private int oddMeQuantity;
 	private float oddMePrice;
+	private float oddAmount;
 	private int odId;
-	private int meId;
 	
 	public OderDetail() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public OderDetail(int oddId, String oddMeName, Date oddCreated, int oddMeQuantity, float oddMePrice, int odId,
-			int meId) {
+	public OderDetail(int oddId, String oddMeName, int oddMeQuantity, float oddMePrice, float oddAmount, int odId) {
 		super();
 		this.oddId = oddId;
 		this.oddMeName = oddMeName;
-		this.oddCreated = oddCreated;
 		this.oddMeQuantity = oddMeQuantity;
 		this.oddMePrice = oddMePrice;
+		this.oddAmount = oddAmount;
 		this.odId = odId;
-		this.meId = meId;
 	}
 
 	public int getOddId() {
@@ -44,14 +41,6 @@ public class OderDetail {
 		this.oddMeName = oddMeName;
 	}
 
-	public Date getOddCreated() {
-		return oddCreated;
-	}
-
-	public void setOddCreated(Date oddCreated) {
-		this.oddCreated = oddCreated;
-	}
-
 	public int getOddMeQuantity() {
 		return oddMeQuantity;
 	}
@@ -68,6 +57,14 @@ public class OderDetail {
 		this.oddMePrice = oddMePrice;
 	}
 
+	public float getOddAmount() {
+		return oddAmount;
+	}
+
+	public void setOddAmount(float oddAmount) {
+		this.oddAmount = oddAmount;
+	}
+
 	public int getOdId() {
 		return odId;
 	}
@@ -76,14 +73,6 @@ public class OderDetail {
 		this.odId = odId;
 	}
 
-	public int getMeId() {
-		return meId;
-	}
-
-	public void setMeId(int meId) {
-		this.meId = meId;
-	}
-	
 	
 	
 }

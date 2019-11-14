@@ -109,8 +109,8 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./examples/register.html">
-              <i class="ni ni-circle-08 text-pink"></i> Pages
+            <a class="nav-link" href="OderController?action=getAllOder">
+              <i class="ni ni-circle-08 text-pink"></i> Oder
             </a>
           </li>
         </ul>
@@ -120,18 +120,13 @@
         <!-- Navigation -->
         <ul class="navbar-nav mb-md-3">
           <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html">
-              <i class="ni ni-spaceship"></i> New
-            </a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/foundation/colors.html">
-              <i class="ni ni-palette"></i> Oder
+              <i class="ni ni-palette"></i> Pages
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/components/alerts.html">
-              <i class="ni ni-ui-04"></i> Components
+              <i class="ni ni-ui-04"></i> New
             </a>
           </li>
         </ul>
